@@ -93,10 +93,6 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 700; line-height: 1.3; 
 .sub-visual__logo { width: 56px; height: 56px; margin: 0 auto 12px; background: var(--paper); border-radius: 50%; padding: 6px; }
 .sub-visual__en { font-family: var(--serif); font-weight: 400; font-size: var(--step-4); letter-spacing: .02em; }
 .sub-visual__ko { margin: 4px 0 0; font-size: var(--step-1); }
-.ai-badge {
-  position: absolute; right: 12px; bottom: 10px; font-size: .75rem;
-  padding: 2px 8px; background: rgba(30, 58, 52, .7); color: var(--paper); border-radius: 3px;
-}
 
 /* 메인 슬라이드 */
 .hero { position: relative; height: calc(100svh - var(--header-h)); min-height: 520px; max-height: 900px; overflow: hidden; background: var(--pine); }
@@ -120,8 +116,7 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 700; line-height: 1.3; 
 }
 .hero__ctrl button:hover { background: rgba(251, 252, 252, .15); }
 .hero__count { min-width: 3.5em; text-align: center; font-variant-numeric: tabular-nums; }
-.hero .ai-badge { z-index: 2; left: var(--gutter); right: auto; bottom: 28px; }
-
+.hero 
 /* 메인: 13필지 */
 .plan-intro { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
 .plan-intro h2 { font-size: var(--step-4); }
@@ -276,8 +271,7 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 700; line-height: 1.3; 
   .spec-table th { width: 34%; }
   /* 하단 전화 버튼(약 80px)을 피해 배치 */
   .hero__text { bottom: 150px; }
-  .hero__ctrl, .hero .ai-badge { bottom: 92px; }
-  .wide-fig img { aspect-ratio: 4 / 3; }
+  .hero__ctrl, .hero   .wide-fig img { aspect-ratio: 4 / 3; }
 
   .call-fab {
     display: block; position: fixed; z-index: 40; left: 16px; right: 16px;

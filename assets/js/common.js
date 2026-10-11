@@ -69,7 +69,6 @@
         h("h3", { class: "sub-visual__en", text: p.en }),
         h("p", { class: "sub-visual__ko", text: p.ko }),
       ]),
-      h("span", { class: "ai-badge", text: "AI 생성 이미지" }),
     ]);
     // url()은 문서 기준 경로로 해석되도록 인라인으로 지정
     sec.style.backgroundImage = "linear-gradient(rgba(30,58,52,.45), rgba(30,58,52,.55)), url('" + p.img + "')";
@@ -98,7 +97,7 @@
     "type-strip": function () {
       return h("ul", { class: "type-strip" }, S.types.map(function (t) {
         return h("li", {}, [h("a", { href: "unit.html#" + t.id }, [
-          h("img", { src: t.img, alt: t.name + " 투시도 (AI 생성)", loading: "lazy" }),
+          h("img", { src: t.img, alt: t.name + " 투시도", loading: "lazy" }),
           h("span", { class: "type-strip__name", text: t.name }),
           h("span", { class: "type-strip__meta", text: t.title }),
         ])]);
@@ -139,7 +138,7 @@
       tablist.appendChild(tab);
       var panel = h("section", { class: "type-panel", role: "tabpanel", id: "panel-" + t.id, "aria-labelledby": "tab-" + t.id, hidden: "" }, [
         h("figure", { class: "type-panel__fig" }, [
-          h("img", { src: t.img, alt: t.name + " " + t.title + " 투시도 (AI 생성)" }),
+          h("img", { src: t.img, alt: t.name + " " + t.title + " 투시도" }),
           h("figcaption", { text: "연출 투시도입니다. 실제 설계와 다를 수 있습니다." }),
         ]),
         h("div", { class: "type-panel__body" }, [
