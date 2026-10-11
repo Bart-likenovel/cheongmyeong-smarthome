@@ -17,6 +17,8 @@ for f in sorted(os.listdir(AI)):
     src = os.path.join(AI, f)
     im = Image.open(src)
     if f == "logo-mark.png":
+        if im.size == (256, 256):
+            continue  # 이미 최적화됨. 다시 처리하면 보관 원본을 축소본으로 덮어쓴다
         shutil.copy2(src, os.path.join(ORIG, f))
         bbox = im.getchannel("A").point(lambda a: 255 if a > 8 else 0).getbbox()
         im = im.crop(bbox)
