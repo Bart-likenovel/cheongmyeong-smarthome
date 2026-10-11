@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="t d">
+  <title id="t">청명스마트홈 입지 개념도</title>
+  <desc id="d">단지를 중심으로 청명산, 초등학교, 하갈동 기흥중학교, 삼성전자 기흥캠퍼스, 용인 반도체 국가산단의 위치 관계를 나타낸 개념도. 거리와 방향은 실제와 다릅니다.</desc>
+  <style>
+    .lbl{font:600 16px 'IBM Plex Sans KR',sans-serif;fill:#1E3A34}
+    .sub{font:400 12.5px 'IBM Plex Sans KR',sans-serif;fill:#4A6560}
+    .site{font:400 20px 'Gowun Batang',serif;fill:#FBFCFC}
+    .link{fill:none;stroke:#A9C3CF;stroke-width:2;stroke-dasharray:6 6}
+    .pin{fill:#FBFCFC;stroke:#1E3A34;stroke-width:1.5}
+  </style>
+  <rect width="800" height="600" fill="#F3F8FA"/>
+  <!-- 청명산 -->
+  <ellipse cx="190" cy="250" rx="150" ry="110" fill="#CFE3B8"/>
+  <text x="140" y="245" class="lbl">청명산</text>
+  <text x="128" y="266" class="sub">단지 바로 곁의 숲</text>
+  <!-- 연결선 -->
+  <path class="link" d="M400 290 L610 140"/>
+  <path class="link" d="M400 290 L640 300"/>
+  <path class="link" d="M400 290 L250 480"/>
+  <path class="link" d="M400 290 L700 520"/>
+  <!-- 단지 -->
+  <circle cx="400" cy="290" r="62" fill="#1E3A34"/>
+  <text x="400" y="286" text-anchor="middle" class="site">청명</text>
+  <text x="400" y="310" text-anchor="middle" class="site">스마트홈</text>
+  <!-- 8m 도로 -->
+  <path d="M300 380 C 380 365 470 365 560 385" fill="none" stroke="#C9D6DC" stroke-width="14"/>
+  <text x="430" y="410" text-anchor="middle" class="sub">전면 8m 도로 (2027년 2월 개통 예정)</text>
+  <!-- 초등학교 -->
+  <rect class="pin" x="560" y="105" width="150" height="54" rx="6"/>
+  <text x="575" y="128" class="lbl">초등학교</text>
+  <text x="575" y="148" class="sub">도보권</text>
+  <!-- 기흥중학교 -->
+  <rect class="pin" x="600" y="270" width="170" height="54" rx="6"/>
+  <text x="615" y="293" class="lbl">기흥중학교</text>
+  <text x="615" y="313" class="sub">하갈동 · 신설</text>
+  <!-- 삼성전자 기흥캠퍼스 -->
+  <rect class="pin" x="130" y="455" width="230" height="54" rx="6"/>
+  <text x="145" y="478" class="lbl">삼성전자 기흥캠퍼스</text>
+  <text x="145" y="498" class="sub">기흥구 농서동</text>
+  <!-- 국가산단 -->
+  <rect class="pin" x="520" y="500" width="260" height="54" rx="6"/>
+  <text x="535" y="523" class="lbl">용인 반도체 국가산단</text>
+  <text x="535" y="543" class="sub">처인구 이동·남사읍 방향</text>
+  <text x="20" y="588" class="sub">위치 관계를 나타낸 개념도입니다. 거리와 방향은 실제와 다릅니다.</text>
+</svg>

@@ -1,0 +1,5 @@
+tools/logs/
+.DS_Store
+.omc/
+*.bak-*
+HANDOFF.md
