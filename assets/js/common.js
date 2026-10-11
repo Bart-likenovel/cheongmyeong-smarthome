@@ -94,6 +94,16 @@
         return h("tr", {}, [h("th", { scope: "row", text: r[0] }), h("td", { text: r[1] })]);
       }))]);
     },
+    "map-links": function () {
+      var q = encodeURIComponent(S.mapQuery);
+      return h("div", { class: "map-links" }, [
+        h("p", { class: "map-links__addr", text: S.address }),
+        h("div", { class: "btn-row" }, [
+          h("a", { class: "btn", href: "https://map.kakao.com/?q=" + q, target: "_blank", rel: "noopener", text: "카카오맵에서 보기" }),
+          h("a", { class: "btn", href: "https://map.naver.com/p/search/" + q, target: "_blank", rel: "noopener", text: "네이버지도에서 보기" }),
+        ]),
+      ]);
+    },
     "type-strip": function () {
       return h("ul", { class: "type-strip" }, S.types.map(function (t) {
         return h("li", {}, [h("a", { href: "unit.html#" + t.id }, [

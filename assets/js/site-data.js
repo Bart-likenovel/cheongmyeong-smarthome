@@ -2,9 +2,14 @@
  * 연락처·메뉴·사업개요·타입·입지·언론보도는 이 파일만 수정한다.
  * fact: 확인된 사실 / owner: 사업주(대표) 안내 / plan: 계획·검토 단계
  */
+// 대표 지번(13필지 모두 사업주 소유, 필지별 지번은 상담 시 안내)
+var ADDRESS = "경기도 용인시 기흥구 하갈동 343-1 일원";
+
 window.SITE = {
   brand: { name: "청명스마트홈", en: "Cheongmyeong Smart Home", owner: "유만식" },
   contact: { tel: "010-5001-6182" },
+  address: ADDRESS,
+  mapQuery: "경기도 용인시 기흥구 하갈동 343-1",
 
   nav: [
     { label: "사업개요", href: "overview.html" },
@@ -28,14 +33,14 @@ window.SITE = {
     overview: { en: "overview", ko: "사업개요", img: "assets/img/ai/hero-01-village.jpg" },
     premium: { en: "premium", ko: "프리미엄", img: "assets/img/ai/hero-03-interior.jpg" },
     location: { en: "location", ko: "입지환경", img: "assets/img/ai/hero-05-trail.jpg" },
-    design: { en: "landscape", ko: "단지안내", img: "assets/img/ai/landscape.jpg" },
+    design: { en: "landscape", ko: "단지안내", img: "assets/img/ai/landscape-v2.jpg" },
     unit: { en: "house types", ko: "단지안내", img: "assets/img/ai/hero-02-yard.jpg" },
     news: { en: "news", ko: "홍보센터", img: "assets/img/ai/hero-06-dusk.jpg" },
   },
 
   overview: [
     ["사업명", "청명스마트홈"],
-    ["위치", "경기도 용인시 기흥구 하갈동 일원 (상세 주소는 상담 시 안내)"],
+    ["위치", ADDRESS + " (필지별 지번은 상담 시 안내)"],
     ["대지면적", "약 2,000평 (확정 면적 추후 안내)"],
     ["세대수", "13세대 (13필지)"],
     ["주택 유형", "모듈형 스마트 단독주택 (A~E 5개 타입 검토 중)"],
@@ -107,17 +112,17 @@ window.SITE = {
 
   // 입지 근거. kind: fact(보도·공식 확인) / owner(사업주 안내)
   location: [
-    { title: "청명산 기슭", body: "단지가 청명산 기슭에 자리합니다. 숲을 곁에 둔 조용한 주거지입니다.", kind: "owner" },
+    { title: "청명산 기슭", body: "청명산이 단지 서쪽 직선 약 0.5km에 있습니다. 숲을 곁에 둔 조용한 주거지입니다.", kind: "fact", src: { label: "네이버지도 좌표 기준 직선거리", url: "https://map.naver.com/p/search/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EC%9A%A9%EC%9D%B8%EC%8B%9C%20%EA%B8%B0%ED%9D%A5%EA%B5%AC%20%ED%95%98%EA%B0%88%EB%8F%99%20343-1" } },
     { title: "8m 전면 도로 개통 예정", body: "단지 전면에 8m 도로가 2027년 2월 개통될 예정입니다.", kind: "owner" },
-    { title: "초등학교 도보권", body: "걸어서 다닐 수 있는 거리에 초등학교가 있습니다.", kind: "owner" },
+    { title: "초등학교 도보권", body: "용인신성초등학교가 단지에서 직선 약 0.7km 거리에 있습니다.", kind: "fact", src: { label: "네이버지도 좌표 기준 직선거리", url: "https://map.naver.com/p/search/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EC%9A%A9%EC%9D%B8%EC%8B%9C%20%EA%B8%B0%ED%9D%A5%EA%B5%AC%20%ED%95%98%EA%B0%88%EB%8F%99%20343-1" } },
     {
       title: "하갈동 중학교 신설", kind: "fact",
-      body: "하갈동에 기흥중학교(가칭 기흥1중) 신축이 진행되어 2026년 9월 개교 예정으로 보도되었습니다.",
+      body: "하갈동 기흥중학교가 단지에서 직선 약 0.6km입니다. 2026년 9월 개교 예정으로 보도되었습니다.",
       src: { label: "아시아경제 2026-04-04", url: "https://view.asiae.co.kr/article/2026040417321663186" },
     },
     {
       title: "삼성전자 기흥캠퍼스", kind: "fact",
-      body: "삼성전자 기흥캠퍼스(기흥구 농서동)와 같은 기흥구 생활권입니다.",
+      body: "삼성전자 기흥캠퍼스(기흥구 농서동)까지 직선 약 3.2km, 같은 기흥구 생활권입니다.",
       src: { label: "삼성전자 반도체 뉴스룸", url: "https://news.samsungsemiconductor.com/kr/%EB%B0%98%EB%8F%84%EC%B2%B4-%EC%97%AD%EC%82%AC%EC%8B%9C%EB%A6%AC%EC%A6%88-6%ED%83%84-%EC%82%BC%EC%84%B1%EB%B0%98%EB%8F%84%EC%B2%B4-45%EB%85%84-%EC%82%AC%EC%97%85%EC%9E%A5%EC%9D%98-%EC%84%B1/" },
     },
     {
