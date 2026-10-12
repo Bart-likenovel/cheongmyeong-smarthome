@@ -158,7 +158,7 @@
             return h("tr", {}, [h("th", { scope: "row", text: r[0] }), h("td", { text: r[1] })]);
           }))]),
           h("ul", { class: "type-panel__points" }, t.points.map(function (p) { return h("li", { text: p }); })),
-          h("p", { class: "type-panel__ref", text: "참고 사례: " + t.ref + " — 타사 시공 사례를 참고한 제안입니다." }),
+          h("p", { class: "type-panel__ref", text: "타사 시공 사례를 참고한 제안입니다." }),
         ]),
       ]);
       panels.push(panel);

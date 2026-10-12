@@ -1,4 +1,4 @@
-"""13필지 배치 개념도 SVG 생성기.
+"""15필지 배치 개념도 SVG 생성기.
 좌표는 참고자료/도면원본_codex_수정.png(1492×1054 px, 도로공사용도면 1/600)의 픽셀 좌표를 그대로 옮긴 것이다.
 지번·소유자명은 넣지 않는다. 수정은 이 파일에서 하고 다시 실행한다.
 사용: python3 -I tools/build-site-plan.py
@@ -8,11 +8,17 @@ import math, os
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "img", "svg", "site-plan.svg")
 VB = (80, 160, 600, 760)  # x, y, w, h (도면 픽셀 좌표 기준 크롭)
 
-# 단지 경계(도면 적색/흑색 경계선)
+# 단지 경계(도면 적색/흑색 경계선). 서북측은 추가 2필지(343-2답 일대, 도면 적색 점선과 기존 도로 사이)까지 포함
 BOUNDARY = [(325, 282), (363, 283), (440, 257), (455, 270), (470, 300), (565, 330), (550, 363), (557, 440),
             (547, 460), (500, 560), (493, 593), (500, 600), (520, 707), (543, 740), (560, 803), (587, 840),
             (600, 892), (520, 857), (473, 817), (363, 740), (227, 677), (200, 660), (130, 590), (140, 517),
-            (200, 440), (307, 303)]
+            (135, 440), (125, 385), (107, 360), (100, 330), (97, 310), (107, 252), (165, 250), (245, 270)]
+# 기존 13필지와 추가 2필지 사이 경계(기존 단지 서북측 경계선)
+ANNEX_EDGE = [(325, 282), (307, 303), (200, 440), (140, 517)]
+OLD_SITE = BOUNDARY[:24] + ANNEX_EDGE[2:0:-1]  # 기존 13필지 영역(구분선 클립용)
+ANNEX = BOUNDARY[23:] + ANNEX_EDGE[:3]        # 추가 2필지 영역
+# 추가 2필지 구분선: 도로변에서 서측 점선과 평행하게 내려 면적을 반씩 나눔
+ANNEX_SPLIT = ((167, 255), (197, 505))
 # 북측 기존 도로(전면 도로) 중심선
 FRONT_ROAD = [(80, 192), (165, 233), (245, 256), (330, 268), (440, 244), (500, 262), (630, 280), (700, 250),
               (750, 205), (790, 182)]
@@ -20,11 +26,13 @@ FRONT_ROAD = [(80, 192), (165, 233), (245, 256), (330, 268), (440, 244), (500, 2
 INNER_ROAD = [(482, 262), (480, 300), (272, 594), (533, 756)]
 # 구거(수로) 중심선
 DITCH = [(80, 585), (190, 662), (330, 735), (420, 792), (520, 862), (610, 902)]
-# 건물 13동 중심 좌표 (도면 해치 영역 중심)
+# 건물 15동 중심 좌표 (도면 해치 영역 중심, 14·15는 추가 필지 무게중심)
 HOUSES = [(383, 328), (307, 378), (262, 420), (217, 493), (178, 582),   # 진입로 서측 1~5
           (498, 393), (463, 437), (412, 507), (368, 562),               # 진입로 동측 6~9
-          (295, 653), (458, 653), (415, 747), (523, 822)]               # 꺾인 도로 10~13
+          (295, 653), (458, 653), (415, 747), (523, 822),               # 꺾인 도로 10~13
+          (143, 365), (228, 325)]                                       # 추가 필지(전면 도로 접면) 14~15
 HOUSE_W, HOUSE_H, ROT = 62, 50, 35.3  # 도로 방향(-54.7°)에 맞춘 회전
+HOUSE_ROT = [ROT] * 13 + [83, 14]  # 14: 좁고 긴 서측 필지 방향, 15: 전면 도로 방향
 
 def pts(seq):
     return " ".join(f"{x},{y}" for x, y in seq)
@@ -56,14 +64,14 @@ for i, (x, y) in enumerate(HOUSES):
     houses.append(
         f'<g transform="translate({x} {y})">'
         f'<rect class="house" x="{-HOUSE_W/2}" y="{-HOUSE_H/2}" width="{HOUSE_W}" height="{HOUSE_H}" '
-        f'transform="rotate({ROT})" style="animation-delay:{d:.2f}s"/>'
+        f'transform="rotate({HOUSE_ROT[i]})" style="animation-delay:{d:.2f}s"/>'
         f'<text class="num" y="5" style="animation-delay:{d:.2f}s">{i+1}</text></g>')
 
 div_lines = "\n    ".join(f'<line x1="{a[0]:.0f}" y1="{a[1]:.0f}" x2="{b[0]:.0f}" y2="{b[1]:.0f}"/>' for a, b in dividers())
 
 svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="{VB[0]} {VB[1]} {VB[2]} {VB[3]}" role="img" aria-labelledby="t d">
-  <title id="t">청명스마트홈 13필지 배치 개념도</title>
-  <desc id="d">도로공사용 도면을 바탕으로 그린 배치 개념도. 북측 전면 도로에서 단지 진입로가 남서쪽으로 내려와 남동쪽으로 꺾이고, 진입로 양쪽과 꺾인 도로 주변에 주택 13동이 놓인다. 남서쪽 경계를 따라 구거가 흐른다.</desc>
+  <title id="t">청명스마트홈 15필지 배치 개념도</title>
+  <desc id="d">도로공사용 도면을 바탕으로 그린 배치 개념도. 북측 전면 도로에서 단지 진입로가 남서쪽으로 내려와 남동쪽으로 꺾이고, 진입로 양쪽과 꺾인 도로 주변에 주택 13동, 북서쪽 전면 도로변에 주택 2동이 놓인다. 남서쪽 경계를 따라 구거가 흐른다.</desc>
   <style>
     .site{{fill:#FBFCFC;stroke:#1E3A34;stroke-width:2;stroke-dasharray:8 5}}
     .div line{{stroke:#A9C3CF;stroke-width:1.4;stroke-dasharray:5 4}}
@@ -75,7 +83,9 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="{VB[0]} {VB[1]} {VB[2
     @media (prefers-reduced-motion:reduce){{.house,.num{{animation:none;opacity:1}}}}
   </style>
   <rect x="{VB[0]}" y="{VB[1]}" width="{VB[2]}" height="{VB[3]}" fill="#F3F8FA"/>
-  <defs><clipPath id="clip"><polygon points="{pts(BOUNDARY)}"/></clipPath></defs>
+  <defs><clipPath id="clip"><polygon points="{pts(BOUNDARY)}"/></clipPath>
+    <clipPath id="clip-old"><polygon points="{pts(OLD_SITE)}"/></clipPath>
+    <clipPath id="clip-annex"><polygon points="{pts(ANNEX)}"/></clipPath></defs>
   <!-- 구거 -->
   <path d="{path(DITCH)}" fill="none" stroke="#C7DCC0" stroke-width="34" stroke-linecap="round"/>
   <path d="{path(DITCH)}" fill="none" stroke="#9CC27A" stroke-width="1.5" stroke-dasharray="3 5"/>
@@ -86,14 +96,15 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="{VB[0]} {VB[1]} {VB[2
   <text x="520" y="232" class="lbl">전면 도로 · 8m 개통 예정</text>
   <!-- 단지 -->
   <polygon class="site" points="{pts(BOUNDARY)}"/>
-  <g class="div" clip-path="url(#clip)">
+  <g class="div" clip-path="url(#clip-old)">
     {div_lines}
   </g>
+  <g class="div" clip-path="url(#clip-annex)"><line x1="{ANNEX_SPLIT[0][0]}" y1="{ANNEX_SPLIT[0][1]}" x2="{ANNEX_SPLIT[1][0]}" y2="{ANNEX_SPLIT[1][1]}"/></g>
+  <path d="{path(ANNEX_EDGE)}" fill="none" stroke="#A9C3CF" stroke-width="1.4" stroke-dasharray="5 4"/>
   <path d="{path(INNER_ROAD)}" fill="none" stroke="#C9D6DC" stroke-width="34" stroke-linejoin="round" clip-path="url(#clip)"/>
   <path d="{path(INNER_ROAD[:2])}" fill="none" stroke="#C9D6DC" stroke-width="34"/>
   <text x="492" y="300" class="sub">단지 진입</text>
   {"".join(houses)}
-  <text x="110" y="330" class="sub">인접 기허가지</text>
   <text x="575" y="520" class="sub">인접 기허가지</text>
   <!-- 방위 -->
   <g transform="translate(130 860)">

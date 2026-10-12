@@ -2,9 +2,9 @@
   "common": "Style/medium: photorealistic architectural visualization, natural light, high detail. Context: small private village of modern modular detached houses in Yongin, Gyeonggi-do, South Korea, at the foot of a low forested hill (Cheongmyeong-san) in early spring (fresh green leaves, some cherry blossoms). Constraints: no text, no signage, no logos, no watermark, no recognizable faces. Avoid: high-rise towers in foreground, tropical plants, palm trees, swimming pools.",
   "images": [
     {
-      "file": "hero-01-village.png",
-      "role": "메인 슬라이드 1 / 사업개요 서브비주얼",
-      "prompt": "Wide elevated view of a small village of 13 modern two-story modular houses arranged along a gently curving internal road, forested hill behind, clear bright spring morning sky, composition 3:2 landscape with calm sky area on the left third for headline text."
+      "file": "hero-01-village-v2.png",
+      "role": "메인 슬라이드 1 / 사업개요 서브비주얼 (15세대 반영) — 생성본이 14동이라 1동 추가 편집으로 마감(tools/logs/hero-01-village-v2-edit.log)",
+      "prompt": "Wide elevated view of a small private village of exactly 15 modern two-story modular detached houses (count them: 15, not 14, not 13): 13 houses line both sides of one gently bending internal access road, and 2 more houses sit side by side along the existing road at the upper-left edge of the village. All 15 houses fully visible, none hidden by trees. Each house has its own lawn yard. Forested low hill behind, clear bright spring morning sky, composition 3:2 landscape with calm sky area on the left third for headline text."
     },
     {
       "file": "hero-02-yard.png",
@@ -12,9 +12,9 @@
       "prompt": "Front yard of one modern modular house at golden hour: wooden deck, lawn, small vegetable garden, a family seen from behind at distance, warm interior lights, 3:2 landscape, quiet area on the left for text."
     },
     {
-      "file": "hero-03-interior.png",
-      "role": "메인 슬라이드 3 / 프리미엄 서브비주얼",
-      "prompt": "Bright living room of a modern Korean detached house with double-height ceiling and a large window framing the spring forest, light oak floor, minimal furniture, a small smart home wall control panel near the entrance, 3:2 landscape."
+      "file": "hero-03-interior-v2.png",
+      "role": "메인 슬라이드 3 / 프리미엄 서브비주얼 (호수 조망 문구 반영)",
+      "prompt": "Bright living room of a modern Korean detached house on a hillside with a double-height ceiling and a floor-to-ceiling two-story window. Through the window: fresh spring forest of a low hill in the foreground and, further below in the distance, a wide calm lake (Giheung Lake) with soft morning haze, an open unobstructed panoramic view. Light oak floor, minimal furniture, discreet smart home touches: a slim wall-mounted control panel near the entrance and concealed linear lighting. 3:2 landscape."
     },
     {
       "file": "hero-04-module.png",
@@ -57,9 +57,10 @@
       "prompt": "Exterior perspective of a classic two-story red brick house with an asymmetric gable standing-seam metal roof in muted blue-gray, many large windows, small wooden deck, pine trees behind, 3:2 landscape, clear day."
     },
     {
-      "file": "landscape-v2.png",
-      "role": "단지조경 이미지 (도면 배치 반영, site-plan.svg를 레이아웃 참고 이미지로 입력)",
-      "prompt": "Slightly elevated aerial view of 13 modern two-story modular houses laid out like the reference site plan: one access road enters from the existing road at the top, runs diagonally to the lower-left, then bends to the lower-right; each house on its own lot with a private lawn yard, low hedges and fences; a narrow tree-lined stream ditch along the lower-left boundary; forested hill on the west. NO central shared park, NO shared garden plots."
+      "file": "landscape-v3.png",
+      "role": "단지조경 이미지 (15필지 배치 반영, tools/refs/site-plan-15.png를 레이아웃 참고 이미지로 입력)",
+      "ref": "tools/refs/site-plan-15.png",
+      "prompt": "Slightly elevated aerial photo-real view of a small private village of exactly 15 modern two-story modular detached houses laid out like the reference site plan: ONE asphalt access road enters from the existing road at the top, runs diagonally down to the lower-left, then bends and continues to the lower-right, with 13 houses on both sides of it; at the upper-left corner, 2 more houses sit side by side on their own lots directly facing the existing road. Every house has its own private lawn yard, low hedges and simple fences between lots, small driveways. A narrow natural stream ditch lined with trees runs along the lower-left boundary; a forested low hill on the west. NO central shared park, NO shared lawn in the middle, NO community vegetable garden plots."
     }
   ]
 }

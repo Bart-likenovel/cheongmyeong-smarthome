@@ -1,5 +1,5 @@
 """입지 지도 SVG 생성기.
-좌표: 네이버지도 검색 결과(2026-10-11 조회). 방향은 실제 방위, 거리는 단지 중심 직선거리.
+좌표: 네이버지도 검색 결과(2026-10-11 조회). 청명초·삼성전자 수원사업장은 OpenStreetMap(2026-10-12 조회). 방향은 실제 방위, 거리는 단지 중심 직선거리.
 반경은 가독성을 위해 제곱근 비율로 압축하고, 링에 실제 거리(500m·1km·3km)를 표기한다.
 사용: python3 -I tools/build-location-map.py
 """
@@ -7,8 +7,10 @@ import math, os
 
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "img", "svg", "location-map.svg")
 CENTER = (37.2576975, 127.0894997)  # 하갈동 343-1
-POIS = [  # 이름, 보조 설명, 위도, 경도, 라벨 위치(left/right)
+POIS = [  # 이름, 보조 설명, 위도, 경도, 라벨 위치(left/right/up)
     ("청명산", "숲·산책로", 37.2585947, 127.0836475, "left"),
+    ("청명초등학교", "수원 영통구", 37.2656313, 127.0852092, "left"),
+    ("삼성전자 수원사업장", "수원 영통구", 37.2572873, 127.0520942, "up"),
     ("신성초등학교", "용인신성초", 37.2553636, 127.0816460, "left"),
     ("기흥중학교", "하갈동", 37.2588263, 127.0966821, "right"),
     ("청명호수마을", "생활권", 37.2541492, 127.0925468, "right"),
@@ -62,10 +64,13 @@ parts.append(f'<path d="M{CX} 40 V{H - 40} M60 {CY} H{W - 60}" class="axis"/>')
 for name, sub, lat, lon, side in POIS:
     x, y, d = place(lat, lon)
     anchor, tx = ("end", x - 14) if side == "left" else ("start", x + 14)
+    ty = y
+    if side == "up":  # 왼쪽 가장자리 지점: 점 위로 라벨을 올려 다른 라벨과 겹치지 않게 한다
+        anchor, tx, ty = "start", max(32, x - 50), y - 42
     parts.append(f'<line x1="{CX}" y1="{CY}" x2="{x:.1f}" y2="{y:.1f}" class="spoke"/>')
     parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="6" class="poi"/><circle cx="{x:.1f}" cy="{y:.1f}" r="12" class="poi-halo"/>')
-    parts.append(f'<text x="{tx:.1f}" y="{y - 2:.1f}" text-anchor="{anchor}" class="name">{name}</text>')
-    parts.append(f'<text x="{tx:.1f}" y="{y + 17:.1f}" text-anchor="{anchor}" class="dist">{sub} · 직선 {km(d)}</text>')
+    parts.append(f'<text x="{tx:.1f}" y="{ty - 2:.1f}" text-anchor="{anchor}" class="name">{name}</text>')
+    parts.append(f'<text x="{tx:.1f}" y="{ty + 17:.1f}" text-anchor="{anchor}" class="dist">{sub} · 직선 {km(d)}</text>')
 # 원거리: 국가산단 방향 화살표
 dx, dy = offset_km(FAR[2], FAR[3]); d = math.hypot(dx, dy)
 ux, uy = dx / d, -dy / d
@@ -114,7 +119,7 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" role="im
     <path d="M0 -20 L7 6 L0 1 L-7 6 Z" fill="#DCEAF2"/>
     <text x="-4" y="22" class="n">N</text>
   </g>
-  <text x="32" y="{H - 24}" class="cap">방향은 실제 방위, 거리는 단지 중심 직선거리 · 반경은 축약 표기 · 좌표 출처 네이버지도</text>
+  <text x="32" y="{H - 24}" class="cap">방향은 실제 방위, 거리는 단지 중심 직선거리 · 반경은 축약 표기 · 좌표 출처 네이버지도·OpenStreetMap</text>
 </svg>
 '''
 open(OUT, "w", encoding="utf-8").write(svg)

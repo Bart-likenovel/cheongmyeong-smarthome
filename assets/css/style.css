@@ -117,7 +117,7 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 700; line-height: 1.3; 
 .hero__ctrl button:hover { background: rgba(251, 252, 252, .15); }
 .hero__count { min-width: 3.5em; text-align: center; font-variant-numeric: tabular-nums; }
 .hero 
-/* 메인: 13필지 */
+/* 메인: 15필지 */
 .plan-intro { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
 .plan-intro h2 { font-size: var(--step-4); }
 .plan-intro p { color: var(--pine-soft); }
