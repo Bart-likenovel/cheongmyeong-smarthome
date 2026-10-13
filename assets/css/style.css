@@ -124,6 +124,7 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 700; line-height: 1.3; 
 .plan-figure { margin: 0; background: var(--mist); border: 1px solid var(--sky); }
 .plan-figure img { width: 100%; }
 .plan-figure figcaption { font-size: var(--step--1); color: var(--pine-soft); padding: 10px 14px; border-top: 1px solid var(--sky); }
+.plan-figure__note { display: block; margin-top: 4px; color: var(--pine); font-weight: 500; }
 
 .btn {
   display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;

@@ -34,6 +34,7 @@
   .tag { display: inline-block; font: 500 7pt var(--sans); color: var(--leaf-ink); border: .25mm solid var(--leaf);
          padding: 0 1.6mm; border-radius: .5mm; margin-left: 1.5mm; vertical-align: middle; }
   .note { font-size: 7.5pt; color: var(--pine-soft); margin-top: 2mm; }
+  .plan-note { display: block; margin-top: 1mm; color: var(--pine); font-weight: 500; font-size: 8pt; }
 
   /* 표지 */
   .cover { padding: 0; background: var(--pine); color: var(--paper); }
@@ -161,7 +162,8 @@
     '<div class="two"><table class="spec"><tbody>' +
       S.overview.map(function (r) { return '<tr><th scope="row">' + esc(r[0]) + "</th><td>" + esc(r[1]) + "</td></tr>"; }).join("") +
     '</tbody></table><figure class="plan" style="margin:0"><img src="' + planSrc + '" alt="15필지 배치 개념도"></figure></div>' +
-    '<p class="note">' + esc(ov.querySelector(".plan-figure figcaption").textContent) + "</p>" +
+    '<p class="note">' + esc(ov.querySelector(".plan-figure figcaption").firstChild.textContent) +
+      '<span class="plan-note">' + esc(ov.querySelector(".plan-figure__note").textContent) + "</span></p>" +
     '<div class="msg"><h3>' + esc(msg.querySelector("h3").textContent) + "</h3>" +
       Array.from(msg.querySelectorAll("p:not(.notice)")).map(function (p) { return "<p>" + esc(p.textContent) + "</p>"; }).join("") +
       '<p class="sign">' + esc(msg.querySelector(".notice").textContent) + "</p></div>" +
