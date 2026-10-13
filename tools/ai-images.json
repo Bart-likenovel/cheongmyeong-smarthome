@@ -57,9 +57,9 @@
       "prompt": "Exterior perspective of a classic two-story red brick house with an asymmetric gable standing-seam metal roof in muted blue-gray, many large windows, small wooden deck, pine trees behind, 3:2 landscape, clear day."
     },
     {
-      "file": "landscape-v3.png",
-      "role": "단지조경 이미지 (15필지 배치 반영, tools/refs/site-plan-15.png를 레이아웃 참고 이미지로 입력)",
-      "ref": "tools/refs/site-plan-15.png",
+      "file": "landscape-v4.png",
+      "role": "단지조경 이미지 (2026-10-13 건물 위치 수정안 반영, tools/refs/site-plan-15b.png를 레이아웃 참고 이미지로 입력)",
+      "ref": "tools/refs/site-plan-15b.png",
       "prompt": "Slightly elevated aerial photo-real view of a small private village of exactly 15 modern two-story modular detached houses laid out like the reference site plan: ONE asphalt access road enters from the existing road at the top, runs diagonally down to the lower-left, then bends and continues to the lower-right, with 13 houses on both sides of it; at the upper-left corner, 2 more houses sit side by side on their own lots directly facing the existing road. Every house has its own private lawn yard, low hedges and simple fences between lots, small driveways. A narrow natural stream ditch lined with trees runs along the lower-left boundary; a forested low hill on the west. NO central shared park, NO shared lawn in the middle, NO community vegetable garden plots."
     }
   ]

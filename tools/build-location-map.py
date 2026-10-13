@@ -7,9 +7,9 @@ import math, os
 
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "img", "svg", "location-map.svg")
 CENTER = (37.2576975, 127.0894997)  # 하갈동 343-1
-POIS = [  # 이름, 보조 설명, 위도, 경도, 라벨 위치(left/right/up)
+POIS = [  # 이름, 보조 설명, 위도, 경도, 라벨 위치(left/right/up)[, 표기 거리 km: 사업주 안내값으로 반경·숫자를 덮어쓸 때]
     ("청명산", "숲·산책로", 37.2585947, 127.0836475, "left"),
-    ("청명초등학교", "수원 영통구", 37.2656313, 127.0852092, "left"),
+    ("청명초등학교", "수원 영통구", 37.2656313, 127.0852092, "left", 0.6),  # 사용자 지시(2026-10-13). OSM 좌표 직선거리는 약 1.0km
     ("삼성전자 수원사업장", "수원 영통구", 37.2572873, 127.0520942, "up"),
     ("신성초등학교", "용인신성초", 37.2553636, 127.0816460, "left"),
     ("기흥중학교", "하갈동", 37.2588263, 127.0966821, "right"),
@@ -26,11 +26,12 @@ def offset_km(lat, lon):
     dy = (lat - CENTER[0]) * 110.57
     return dx, dy
 
-def place(lat, lon):
+def place(lat, lon, dist=None):
     dx, dy = offset_km(lat, lon)
-    d = math.hypot(dx, dy)
+    d = dist or math.hypot(dx, dy)  # 방향은 좌표, 거리는 지정값 우선
     r = K * math.sqrt(d)
-    return CX + dx / d * r, CY - dy / d * r, d
+    h = math.hypot(dx, dy)
+    return CX + dx / h * r, CY - dy / h * r, d
 
 def km(d):
     return f"{d:.1f}km"
@@ -61,8 +62,8 @@ for dist, label in [(0.5, "500m"), (1, "1km"), (3, "3km")]:
 # 방위선
 parts.append(f'<path d="M{CX} 40 V{H - 40} M60 {CY} H{W - 60}" class="axis"/>')
 # 지점
-for name, sub, lat, lon, side in POIS:
-    x, y, d = place(lat, lon)
+for name, sub, lat, lon, side, *dist in POIS:
+    x, y, d = place(lat, lon, *dist)
     anchor, tx = ("end", x - 14) if side == "left" else ("start", x + 14)
     ty = y
     if side == "up":  # 왼쪽 가장자리 지점: 점 위로 라벨을 올려 다른 라벨과 겹치지 않게 한다

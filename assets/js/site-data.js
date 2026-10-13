@@ -33,7 +33,7 @@ window.SITE = {
     overview: { en: "overview", ko: "사업개요", img: "assets/img/ai/hero-01-village-v2.jpg" },
     premium: { en: "premium", ko: "프리미엄", img: "assets/img/ai/hero-03-interior-v2.jpg" },
     location: { en: "location", ko: "입지환경", img: "assets/img/ai/hero-05-trail.jpg" },
-    design: { en: "landscape", ko: "단지안내", img: "assets/img/ai/landscape-v3.jpg" },
+    design: { en: "landscape", ko: "단지안내", img: "assets/img/ai/landscape-v4.jpg" },
     unit: { en: "house types", ko: "단지안내", img: "assets/img/ai/hero-02-yard.jpg" },
     news: { en: "news", ko: "홍보센터", img: "assets/img/ai/hero-06-dusk.jpg" },
   },
@@ -108,7 +108,7 @@ window.SITE = {
   // 입지 근거. kind: fact(보도·공식 확인) / owner(사업주 안내)
   location: [
     { title: "청명산 기슭", body: "청명산이 단지 서쪽 직선 약 0.5km에 있습니다. 숲과 계곡을 곁에 둔 조용한 주거지입니다.", kind: "fact", src: { label: "네이버지도 좌표 기준 직선거리", url: "https://map.naver.com/p/search/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EC%9A%A9%EC%9D%B8%EC%8B%9C%20%EA%B8%B0%ED%9D%A5%EA%B5%AC%20%ED%95%98%EA%B0%88%EB%8F%99%20343-1" } },
-    { title: "8m 전면 도로 확장", body: "단지 앞 기존 도로를 8m로 넓히는 공사가 2027년 6월 완공될 예정입니다.", kind: "owner" },
+    { title: "8m 전면 진입 도시계획도로", body: "단지 앞 기존 도로를 8m로 넓히는 도시계획도로 공사가 2027년 7월 완공될 예정입니다.", kind: "owner" },
     { title: "초등학교 도보권", body: "용인신성초등학교가 단지에서 직선 약 0.7km 거리에 있습니다.", kind: "fact", src: { label: "네이버지도 좌표 기준 직선거리", url: "https://map.naver.com/p/search/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EC%9A%A9%EC%9D%B8%EC%8B%9C%20%EA%B8%B0%ED%9D%A5%EA%B5%AC%20%ED%95%98%EA%B0%88%EB%8F%99%20343-1" } },
     {
       title: "하갈동 중학교 신설", kind: "owner",
@@ -116,9 +116,10 @@ window.SITE = {
     },
     {
       title: "삼성전자 기흥·수원 직주근접", kind: "owner",
-      body: "삼성전자 기흥캠퍼스(기흥구 농서동, 직선 약 3.2km)와 수원사업장(영통구, 직선 약 3.3km)까지 약 10분 거리의 생활권입니다.",
+      body: "삼성전자 기흥캠퍼스(기흥구 농서동, 직선 약 3.2km)와 수원사업장(영통구, 직선 약 3.3km)까지 약 10~13분 거리의 생활권입니다.",
     },
-    { title: "청명IC·수원신갈IC", kind: "owner", body: "용서고속도로 청명IC를 끼고 있고, 경부고속도로 수원신갈IC까지 약 6분 거리입니다." },
+    { title: "청명IC·수원신갈IC", kind: "owner", body: "용인-서울고속도로 청명IC와 맞닿아 있고, 경부고속도로 수원신갈IC에서 약 6분 거리입니다." },
+    { title: "광역버스로 강남 35분", kind: "owner", body: "국도변 광역버스 노선으로 강남역까지 약 35분이면 닿아 강남 접근성이 뛰어납니다." },
     {
       title: "용인 반도체 국가산단", kind: "fact",
       body: "용인시 처인구 이동·남사읍 일대에 삼성전자 반도체 국가산업단지가 조성 중입니다.",

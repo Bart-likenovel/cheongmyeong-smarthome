@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<title>청명스마트홈 분양 안내서</title>
+<!-- 인쇄용 분양 안내서. 내용은 site-data.js와 각 페이지 HTML에서 읽어온다(문구 원본은 사이트).
+     PDF 생성: tools/make-brochure.cjs -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap">
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --sky: #DCEAF2; --sky-deep: #A9C3CF; --paper: #FBFCFC; --mist: #F3F8FA;
+    --pine: #1E3A34; --pine-soft: #4A6560; --leaf: #7DB043; --leaf-ink: #3F6B1C;
+    --serif: "Gowun Batang", "Noto Serif KR", serif;
+    --sans: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { font: 10pt/1.65 var(--sans); color: var(--pine); background: #fff; word-break: keep-all;
+         -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  img { display: block; max-width: 100%; }
+  h1, h2, h3, h4 { font-family: var(--serif); font-weight: 700; margin: 0; letter-spacing: -.01em; }
+  p { margin: 0; }
+
+  .page { width: 210mm; height: 297mm; position: relative; overflow: hidden; page-break-after: always;
+          padding: 16mm 16mm 20mm; background: var(--paper); }
+  .page:last-child { page-break-after: auto; }
+  .folio { position: absolute; left: 16mm; right: 16mm; bottom: 9mm; display: flex; justify-content: space-between;
+           font-size: 7.5pt; color: var(--pine-soft); border-top: .3mm solid var(--sky-deep); padding-top: 2.5mm; }
+  .kicker { font: 500 8pt var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--leaf-ink); }
+  .title { font-size: 22pt; margin: 2mm 0 6mm; }
+  .lead { color: var(--pine-soft); margin-bottom: 6mm; }
+  .tag { display: inline-block; font: 500 7pt var(--sans); color: var(--leaf-ink); border: .25mm solid var(--leaf);
+         padding: 0 1.6mm; border-radius: .5mm; margin-left: 1.5mm; vertical-align: middle; }
+  .note { font-size: 7.5pt; color: var(--pine-soft); margin-top: 2mm; }
+
+  /* 표지 */
+  .cover { padding: 0; background: var(--pine); color: var(--paper); }
+  .cover__img { height: 178mm; width: 100%; object-fit: cover; }
+  .cover__body { padding: 12mm 16mm 0; }
+  .cover__brand { display: flex; align-items: center; gap: 4mm; }
+  .cover__brand img { width: 15mm; height: 15mm; background: var(--paper); border-radius: 50%; padding: 1.5mm; }
+  .cover__brand h1 { font-size: 30pt; }
+  .cover__en { font: 400 9pt var(--sans); letter-spacing: .2em; color: var(--sky); margin-top: 1mm; }
+  .cover__head { font-family: var(--serif); font-size: 15pt; margin-top: 7mm; }
+  .cover__sub { color: var(--sky); margin-top: 1.5mm; }
+  .cover__facts { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 8mm; border-top: .3mm solid rgba(220,234,242,.4); }
+  .cover__facts div { padding: 3mm 3mm 0 0; }
+  .cover__facts dt { font-size: 7.5pt; color: var(--sky-deep); }
+  .cover__facts dd { margin: .5mm 0 0; font: 700 11pt var(--serif); }
+  .cover .folio { color: var(--sky-deep); border-color: rgba(220,234,242,.3); }
+
+  /* 사업개요 */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; }
+  table.spec { width: 100%; border-collapse: collapse; border-top: .6mm solid var(--pine); }
+  .spec th, .spec td { text-align: left; vertical-align: top; padding: 2.6mm 1.5mm; border-bottom: .25mm solid var(--sky-deep); font-size: 9pt; }
+  .spec th { width: 26%; font-weight: 500; color: var(--pine-soft); }
+  .plan { border: .25mm solid var(--sky-deep); background: var(--mist); }
+  .plan img { width: 100%; }
+  .msg { margin-top: 7mm; background: var(--sky); padding: 6mm 7mm; }
+  .msg h3 { font-size: 12pt; margin-bottom: 2.5mm; }
+  .msg p + p { margin-top: 2mm; }
+  .msg .sign { text-align: right; color: var(--pine-soft); font-size: 9pt; }
+
+  /* 프리미엄 */
+  .banner { position: relative; height: 92mm; margin: 0 -16mm 7mm; }
+  .banner img { width: 100%; height: 100%; object-fit: cover; }
+  .banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 35%, rgba(16,31,28,.82)); }
+  .banner__text { position: absolute; z-index: 1; left: 16mm; right: 16mm; bottom: 7mm; color: #fff; }
+  .banner__text h3 { font-size: 16pt; margin-bottom: 1.5mm; }
+  .banner__text p { font-size: 9pt; }
+  .merit { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; border-top: .6mm solid var(--pine); }
+  .merit li { padding: 4mm 4mm 4mm 0; border-bottom: .25mm solid var(--sky-deep); }
+  .merit li:nth-child(2n) { padding-left: 5mm; border-left: .25mm solid var(--sky-deep); }
+  .merit h3 { font-size: 11.5pt; margin-bottom: 1.2mm; }
+  .merit p { font-size: 8.8pt; color: var(--pine-soft); }
+  .merit .tag { margin: 1.5mm 0 0; }
+
+  /* 입지 */
+  .map { background: #101F1C; margin: 0 -16mm !important; }
+  .map img { width: 140mm; margin: 0 auto; }
+  .loc { list-style: none; margin: 6mm 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 8mm; }
+  .loc li { padding: 2.2mm 0; border-bottom: .25mm solid var(--sky-deep); break-inside: avoid; }
+  .loc h4 { font-size: 10pt; }
+  .loc p { font-size: 8.5pt; color: var(--pine-soft); margin-top: .5mm; }
+  .loc .src { font-size: 7pt; }
+
+  /* 단지·타입 */
+  .wide { height: 66mm; width: 100%; object-fit: cover; }
+  .types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm 5mm; margin-top: 4mm; }
+  .type img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+  .type h4 { font-size: 10.5pt; margin-top: 2mm; }
+  .type h4 span { font-weight: 400; color: var(--pine-soft); margin-left: 1mm; }
+  .type ul { margin: 1mm 0 0; padding-left: 3.5mm; font-size: 7.4pt; color: var(--pine-soft); line-height: 1.5; }
+  .type-intro { background: var(--sky); padding: 5mm; display: flex; flex-direction: column; justify-content: center; }
+  .type-intro h3 { font-size: 13pt; margin-bottom: 2mm; }
+  .type-intro p { font-size: 8pt; }
+
+  /* 언론보도·상담 */
+  .news { list-style: none; margin: 0; padding: 0; border-top: .6mm solid var(--pine); }
+  .news li { display: grid; grid-template-columns: 26mm 1fr 22mm; gap: 3mm; padding: 3.5mm 0; border-bottom: .25mm solid var(--sky-deep); font-size: 9pt; }
+  .news .press { color: var(--leaf-ink); font-weight: 500; }
+  .news .date { color: var(--pine-soft); text-align: right; }
+  .contact { margin-top: 12mm; background: var(--pine); color: var(--paper); padding: 10mm; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 6mm; }
+  .contact h3 { font-size: 16pt; }
+  .contact p { color: var(--sky); margin-top: 2mm; font-size: 9pt; }
+  .contact .tel { font: 700 22pt var(--sans); letter-spacing: .02em; color: #fff; text-align: right; }
+  .contact .tel small { display: block; font: 400 8pt var(--sans); color: var(--sky-deep); }
+  .facts { margin-top: 8mm; display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; font-size: 8.5pt; }
+  .facts h4 { font-size: 10pt; margin-bottom: 1.5mm; }
+  .disclaimer { margin-top: 8mm; font-size: 7.5pt; color: var(--pine-soft); border-top: .25mm solid var(--sky-deep); padding-top: 3mm; }
+</style>
+</head>
+<body>
+<div id="doc"></div>
+<script src="../assets/js/site-data.js"></script>
+<script>
+(async function () {
+  var S = window.SITE, R = "../";
+  function load(f) {
+    return fetch(R + f).then(function (r) { return r.text(); })
+      .then(function (t) { return new DOMParser().parseFromString(t, "text/html"); });
+  }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  // 배치도 SVG는 등장 애니메이션이 있어 인쇄 시 일부 주택만 찍힌다. 애니메이션을 끈 정적 사본을 쓴다
+  var planSvg = await fetch(R + "assets/img/svg/site-plan.svg").then(function (r) { return r.text(); });
+  var planSrc = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(
+    planSvg.replace("</style>", ".house,.num{animation:none!important;opacity:1!important}</style>"));
+  var docs = await Promise.all(["index.html", "overview.html", "premium.html", "design.html", "unit.html"].map(load));
+  var idx = docs[0], ov = docs[1], pr = docs[2], de = docs[3], un = docs[4];
+  var slides = idx.querySelectorAll(".hero__slide .hero__text");
+  var ov_ = Object.fromEntries(S.overview);
+  var total = 6;
+  function folio(n, label) {
+    return '<div class="folio"><span>' + esc(S.brand.name) + " 분양 안내 · " + label + "</span><span>" + n + " / " + total + "</span></div>";
+  }
+  function head(kicker, title, lead) {
+    return '<p class="kicker">' + kicker + '</p><h2 class="title">' + esc(title) + "</h2>" + (lead ? '<p class="lead">' + esc(lead) + "</p>" : "");
+  }
+  var tagOwner = '<span class="tag">사업주 안내</span>';
+
+  var pages = [];
+  // 1. 표지
+  pages.push('<section class="page cover">' +
+    '<img class="cover__img" src="' + R + S.pages.overview.img + '" alt="">' +
+    '<div class="cover__body">' +
+      '<div class="cover__brand"><img src="' + R + 'assets/img/ai/logo-mark.png" alt=""><div><h1>' + esc(S.brand.name) + '</h1><p class="cover__en">' + esc(S.brand.en.toUpperCase()) + "</p></div></div>" +
+      '<p class="cover__head">' + esc(slides[0].querySelector("h1").textContent) + "</p>" +
+      '<p class="cover__sub">' + esc(slides[0].querySelector("p").textContent) + "</p>" +
+      '<dl class="cover__facts">' +
+        "<div><dt>대지면적</dt><dd>" + esc(ov_["대지면적"].split(" (")[0]) + "</dd></div>" +
+        "<div><dt>세대수</dt><dd>" + esc(ov_["세대수"]) + "</dd></div>" +
+        "<div><dt>분양 상담</dt><dd>" + esc(S.contact.tel) + "</dd></div>" +
+      "</dl>" +
+    "</div>" + folio(1, "표지") + "</section>");
+
+  // 2. 사업개요
+  var msg = ov.querySelector(".section--sky .prose");
+  pages.push('<section class="page">' + head("Overview", "사업개요", ov.querySelector(".section__head p").textContent) +
+    '<div class="two"><table class="spec"><tbody>' +
+      S.overview.map(function (r) { return '<tr><th scope="row">' + esc(r[0]) + "</th><td>" + esc(r[1]) + "</td></tr>"; }).join("") +
+    '</tbody></table><figure class="plan" style="margin:0"><img src="' + planSrc + '" alt="15필지 배치 개념도"></figure></div>' +
+    '<p class="note">' + esc(ov.querySelector(".plan-figure figcaption").textContent) + "</p>" +
+    '<div class="msg"><h3>' + esc(msg.querySelector("h3").textContent) + "</h3>" +
+      Array.from(msg.querySelectorAll("p:not(.notice)")).map(function (p) { return "<p>" + esc(p.textContent) + "</p>"; }).join("") +
+      '<p class="sign">' + esc(msg.querySelector(".notice").textContent) + "</p></div>" +
+    folio(2, "사업개요") + "</section>");
+
+  // 3. 프리미엄
+  pages.push('<section class="page">' +
+    '<div class="banner" style="margin-top:-16mm"><img src="' + R + S.pages.premium.img + '" alt=""><div class="banner__text"><h3>' +
+      esc(slides[2].querySelector("h2").textContent) + "</h3><p>" + esc(slides[2].querySelector("p").textContent) + "</p></div></div>" +
+    head("Premium", pr.querySelector(".section__head h2").textContent) +
+    '<ul class="merit">' + Array.from(pr.querySelectorAll(".merit li")).map(function (li) { return "<li>" + li.innerHTML + "</li>"; }).join("") + "</ul>" +
+    folio(3, "프리미엄") + "</section>");
+
+  // 4. 입지환경
+  pages.push('<section class="page">' + head("Location", "숲과 일터, 학교 사이") +
+    '<figure class="map" style="margin:0"><img src="' + R + 'assets/img/svg/location-map.svg" alt="입지 지도"></figure>' +
+    '<ul class="loc">' + S.location.map(function (l) {
+      return "<li><h4>" + esc(l.title) + (l.kind === "owner" ? tagOwner : "") + "</h4><p>" + esc(l.body) + "</p>" +
+        (l.src ? '<p class="src">출처: ' + esc(l.src.label) + "</p>" : "") + "</li>";
+    }).join("") + "</ul>" + folio(4, "입지환경") + "</section>");
+
+  // 5. 단지조경·타입별 모듈주택
+  var dh = de.querySelector(".section__head p").textContent;
+  pages.push('<section class="page">' + head("Landscape & House Types", "단지조경 · 타입별 모듈주택", dh) +
+    '<img class="wide" src="' + R + S.pages.design.img + '" alt="">' +
+    '<div class="types"><div class="type-intro"><h3>다섯 가지 타입</h3><p>' + esc(un.querySelector(".section__head p").textContent) + "</p>" +
+      '<p class="note">' + esc(un.querySelector(".notice").textContent) + " 타사 시공 사례를 참고한 제안입니다.</p></div>" +
+      S.types.map(function (t) {
+        return '<div class="type"><img src="' + R + t.img + '" alt=""><h4>' + esc(t.name) + "<span>" + esc(t.title) + "</span></h4><ul>" +
+          t.points.map(function (p) { return "<li>" + esc(p) + "</li>"; }).join("") + "</ul></div>";
+      }).join("") + "</div>" +
+    '<p class="note">연출 이미지입니다. 실제 설계와 다를 수 있습니다. 평형: ' + esc(S.typeSize) + "</p>" +
+    folio(5, "단지안내") + "</section>");
+
+  // 6. 언론보도·상담
+  pages.push('<section class="page">' + head("News", "언론보도", "모듈형 AI 스마트 주택과 단지 주변 개발 관련 보도입니다.") +
+    '<ul class="news">' + S.news.map(function (n) {
+      return '<li><span class="press">' + esc(n.press) + "</span><span>" + esc(n.title) + '</span><span class="date">' + esc(n.date) + "</span></li>";
+    }).join("") + "</ul>" +
+    '<div class="contact"><div><h3>' + esc(idx.querySelector(".cta h2").textContent) + "</h3><p>" + esc(idx.querySelector(".cta p").textContent) + "</p></div>" +
+      '<p class="tel"><small>분양 상담 · 대표 ' + esc(S.brand.owner) + "</small>" + esc(S.contact.tel) + "</p></div>" +
+    '<div class="facts"><div><h4>현장 위치</h4><p>' + esc(S.address) + "</p></div>" +
+      "<div><h4>홈페이지</h4><p>bart-likenovel.github.io/cheongmyeong-smarthome</p></div></div>" +
+    '<p class="disclaimer">' + esc(S.disclaimer) + " 사업주 안내 표시는 사업주가 제공한 정보로, 확정 사항이 아닐 수 있습니다.</p>" +
+    folio(6, "언론보도 · 상담") + "</section>");
+
+  document.getElementById("doc").innerHTML = pages.join("");
+  await document.fonts.ready;
+  await Promise.all(Array.from(document.images).map(function (im) {
+    return im.complete ? 0 : new Promise(function (r) { im.onload = im.onerror = r; });
+  }));
+  window.BROCHURE_READY = true;
+})();
+</script>
+</body>
+</html>

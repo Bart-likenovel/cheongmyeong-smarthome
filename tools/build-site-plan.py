@@ -26,13 +26,18 @@ FRONT_ROAD = [(80, 192), (165, 233), (245, 256), (330, 268), (440, 244), (500, 2
 INNER_ROAD = [(482, 262), (480, 300), (272, 594), (533, 756)]
 # 구거(수로) 중심선
 DITCH = [(80, 585), (190, 662), (330, 735), (420, 792), (520, 862), (610, 902)]
-# 건물 15동 중심 좌표 (도면 해치 영역 중심, 14·15는 추가 필지 무게중심)
-HOUSES = [(383, 328), (307, 378), (262, 420), (217, 493), (178, 582),   # 진입로 서측 1~5
+# 필지 기준점 15개 (도면 해치 영역 중심, 14·15는 추가 필지 무게중심). 필지 구분선 계산에 쓴다
+LOTS = [(383, 328), (307, 378), (262, 420), (217, 493), (178, 582),   # 진입로 서측 1~5
           (498, 393), (463, 437), (412, 507), (368, 562),               # 진입로 동측 6~9
           (295, 653), (458, 653), (415, 747), (523, 822),               # 꺾인 도로 10~13
           (143, 365), (228, 325)]                                       # 추가 필지(전면 도로 접면) 14~15
+# 건물 15동 배치 좌표: 사용자 수정안(2026-10-13 PDF 빨간 박스)을 옮긴 값. 4번은 기존 위치 유지
+HOUSES = [(370, 314), (314, 359), (266, 417), (217, 493), (181, 555),
+          (502, 370), (452, 437), (407, 506), (360, 572),
+          (272, 635), (445, 629), (390, 709), (504, 786),
+          (141, 304), (226, 296)]
 HOUSE_W, HOUSE_H, ROT = 62, 50, 35.3  # 도로 방향(-54.7°)에 맞춘 회전
-HOUSE_ROT = [ROT] * 13 + [83, 14]  # 14: 좁고 긴 서측 필지 방향, 15: 전면 도로 방향
+HOUSE_ROT = [ROT] * 13 + [83, ROT]  # 14: 좁고 긴 서측 필지 방향
 
 def pts(seq):
     return " ".join(f"{x},{y}" for x, y in seq)
@@ -47,7 +52,7 @@ def dividers():
         ax, ay = b[0] - a[0], b[1] - a[1]
         L = math.hypot(ax, ay); ux, uy = ax / L, ay / L
         px, py = -uy, ux
-        t = sorted(((HOUSES[i][0] - a[0]) * ux + (HOUSES[i][1] - a[1]) * uy) for i in idxs)
+        t = sorted(((LOTS[i][0] - a[0]) * ux + (LOTS[i][1] - a[1]) * uy) for i in idxs)
         for k in range(len(t) - 1):
             m = (t[k] + t[k + 1]) / 2
             cx, cy = a[0] + ux * m, a[1] + uy * m
@@ -93,7 +98,7 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="{VB[0]} {VB[1]} {VB[2
   <!-- 전면 도로 -->
   <path d="{path(FRONT_ROAD)}" fill="none" stroke="#C9D6DC" stroke-width="28" stroke-linejoin="round"/>
   <path d="{path(FRONT_ROAD)}" fill="none" stroke="#FBFCFC" stroke-width="1.5" stroke-dasharray="12 10"/>
-  <text x="520" y="232" class="lbl">전면 도로 · 8m 개통 예정</text>
+  <text x="520" y="232" class="lbl">8m 도시계획도로 완공 예정</text>
   <!-- 단지 -->
   <polygon class="site" points="{pts(BOUNDARY)}"/>
   <g class="div" clip-path="url(#clip-old)">
