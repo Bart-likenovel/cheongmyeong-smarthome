@@ -81,7 +81,7 @@ parts.append(f'<text x="{W - 32}" y="{H - 78}" text-anchor="end" class="name">{F
 parts.append(f'<text x="{W - 32}" y="{H - 58}" text-anchor="end" class="dist">{FAR[1]} 방향</text>')
 
 svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" role="img" aria-labelledby="t d">
-  <title id="t">청명스마트홈 입지 지도</title>
+  <title id="t">청명스마트AI홈 입지 지도</title>
   <desc id="d">하갈동 343-1 단지를 중심으로 주요 시설의 실제 방향과 직선거리를 나타낸 지도. 반경은 압축 표기.</desc>
   <style>
     text{{font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif}}
@@ -114,7 +114,7 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" role="im
   <circle cx="{CX}" cy="{CY}" r="90" fill="url(#glow)"/>
   <circle cx="{CX}" cy="{CY}" r="62" fill="#FBFCFC"/>
   <circle cx="{CX}" cy="{CY}" r="69" fill="none" stroke="#7DB043" stroke-width="1.5"/>
-  <text x="{CX}" y="{CY - 2}" text-anchor="middle" class="site-name">청명스마트홈</text>
+  <text x="{CX}" y="{CY - 2}" text-anchor="middle" class="site-name">청명스마트AI홈</text>
   <text x="{CX}" y="{CY + 18}" text-anchor="middle" class="site-sub">하갈동 343-1 일원</text>
   <g transform="translate({W - 56} 64)">
     <path d="M0 -20 L7 6 L0 1 L-7 6 Z" fill="#DCEAF2"/>

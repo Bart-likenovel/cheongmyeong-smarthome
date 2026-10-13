@@ -1,4 +1,4 @@
-/* 청명스마트홈 사이트 공통 데이터 (SSOT)
+/* 청명스마트AI홈 사이트 공통 데이터 (SSOT)
  * 연락처·메뉴·사업개요·타입·입지·언론보도는 이 파일만 수정한다.
  * fact: 확인된 사실 / owner: 사업주(대표) 안내 / plan: 계획·검토 단계
  */
@@ -6,7 +6,7 @@
 var ADDRESS = "경기도 용인시 기흥구 하갈동 343-1 일원";
 
 window.SITE = {
-  brand: { name: "청명스마트홈", en: "Cheongmyeong Smart Home", owner: "유만식" },
+  brand: { name: "청명스마트AI홈", en: "Cheongmyeong Smart AI Home", owner: "유만식" },
   contact: { tel: "010-5001-6182" },
   address: ADDRESS,
   mapQuery: "경기도 용인시 기흥구 하갈동 343-1",
@@ -39,7 +39,7 @@ window.SITE = {
   },
 
   overview: [
-    ["사업명", "청명스마트홈"],
+    ["사업명", "청명스마트AI홈"],
     ["위치", ADDRESS + " (필지별 지번은 상담 시 안내)"],
     ["대지면적", "약 1,900평 (상세 면적 추후 안내)"],
     ["세대수", "15세대 (15필지)"],

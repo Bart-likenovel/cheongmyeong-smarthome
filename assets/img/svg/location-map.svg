@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 720" role="img" aria-labelledby="t d">
-  <title id="t">청명스마트홈 입지 지도</title>
+  <title id="t">청명스마트AI홈 입지 지도</title>
   <desc id="d">하갈동 343-1 단지를 중심으로 주요 시설의 실제 방향과 직선거리를 나타낸 지도. 반경은 압축 표기.</desc>
   <style>
     text{font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif}
@@ -32,7 +32,7 @@
   <circle cx="400" cy="340" r="90" fill="url(#glow)"/>
   <circle cx="400" cy="340" r="62" fill="#FBFCFC"/>
   <circle cx="400" cy="340" r="69" fill="none" stroke="#7DB043" stroke-width="1.5"/>
-  <text x="400" y="338" text-anchor="middle" class="site-name">청명스마트홈</text>
+  <text x="400" y="338" text-anchor="middle" class="site-name">청명스마트AI홈</text>
   <text x="400" y="358" text-anchor="middle" class="site-sub">하갈동 343-1 일원</text>
   <g transform="translate(744 64)">
     <path d="M0 -20 L7 6 L0 1 L-7 6 Z" fill="#DCEAF2"/>

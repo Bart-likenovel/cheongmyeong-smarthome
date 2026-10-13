@@ -97,7 +97,7 @@ for i, (x, y) in enumerate(HOUSES):
 div_lines = "\n    ".join(f'<line x1="{a[0]:.0f}" y1="{a[1]:.0f}" x2="{b[0]:.0f}" y2="{b[1]:.0f}"/>' for a, b in dividers())
 
 svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="{VB[0]} {VB[1]} {VB[2]} {VB[3]}" role="img" aria-labelledby="t d">
-  <title id="t">청명스마트홈 15필지 배치 개념도</title>
+  <title id="t">청명스마트AI홈 15필지 배치 개념도</title>
   <desc id="d">도로공사용 도면을 바탕으로 그린 배치 개념도. 북측 전면 도로에서 단지 진입로가 남서쪽으로 내려와 남동쪽으로 꺾이고, 진입로 양쪽과 꺾인 도로 주변에 주택 13동, 북서쪽 전면 도로변에 주택 2동이 놓인다. 남서쪽 경계를 따라 구거가 흐른다.</desc>
   <style>
     .site{{fill:#FBFCFC;stroke:#1E3A34;stroke-width:2;stroke-dasharray:8 5}}
