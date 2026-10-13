@@ -87,7 +87,7 @@
   .loc .src { font-size: 7pt; }
 
   /* 단지·타입 */
-  .wide { height: 66mm; width: 100%; object-fit: cover; }
+  .wide { grid-column: span 2; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; } /* 원본 비율: 15동이 잘리지 않게 */
   .types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm 5mm; margin-top: 4mm; }
   .type img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
   .type h4 { font-size: 10.5pt; margin-top: 2mm; }
@@ -186,8 +186,7 @@
   // 5. 단지조경·타입별 모듈주택
   var dh = de.querySelector(".section__head p").textContent;
   pages.push('<section class="page">' + head("Landscape & House Types", "단지조경 · 타입별 모듈주택", dh) +
-    '<img class="wide" src="' + R + S.pages.design.img + '" alt="">' +
-    '<div class="types"><div class="type-intro"><h3>다섯 가지 타입</h3><p>' + esc(un.querySelector(".section__head p").textContent) + "</p>" +
+    '<div class="types"><img class="wide" src="' + R + S.pages.design.img + '" alt=""><div class="type-intro"><h3>다섯 가지 타입</h3><p>' + esc(un.querySelector(".section__head p").textContent) + "</p>" +
       '<p class="note">' + esc(un.querySelector(".notice").textContent) + " 타사 시공 사례를 참고한 제안입니다.</p></div>" +
       S.types.map(function (t) {
         return '<div class="type"><img src="' + R + t.img + '" alt=""><h4>' + esc(t.name) + "<span>" + esc(t.title) + "</span></h4><ul>" +

@@ -17,8 +17,8 @@ BOUNDARY = [(325, 282), (363, 283), (440, 257), (455, 270), (470, 300), (565, 33
 ANNEX_EDGE = [(325, 282), (307, 303), (200, 440), (140, 517)]
 OLD_SITE = BOUNDARY[:24] + ANNEX_EDGE[2:0:-1]  # 기존 13필지 영역(구분선 클립용)
 ANNEX = BOUNDARY[23:] + ANNEX_EDGE[:3]        # 추가 2필지 영역
-# 추가 2필지 구분선: 도로변에서 서측 점선과 평행하게 내려 면적을 반씩 나눔
-ANNEX_SPLIT = ((167, 255), (197, 505))
+# 추가 2필지 구분선: 다른 건물과 같은 각도의 건물이 두 필지에 모두 들어가도록 잡음(서측 약 63% / 동측 약 37%)
+ANNEX_SPLIT = ((160, 255), (280, 505))
 # 북측 기존 도로(전면 도로) 중심선
 FRONT_ROAD = [(80, 192), (165, 233), (245, 256), (330, 268), (440, 244), (500, 262), (630, 280), (700, 250),
               (750, 205), (790, 182)]
@@ -31,13 +31,12 @@ LOTS = [(383, 328), (307, 378), (262, 420), (217, 493), (178, 582),   # 진입�
           (498, 393), (463, 437), (412, 507), (368, 562),               # 진입로 동측 6~9
           (295, 653), (458, 653), (415, 747), (523, 822),               # 꺾인 도로 10~13
           (143, 365), (228, 325)]                                       # 추가 필지(전면 도로 접면) 14~15
-# 건물 15동 배치 좌표: 사용자 수정안(2026-10-13 PDF 빨간 박스)을 옮긴 값. 4번은 기존 위치 유지
-HOUSES = [(370, 314), (314, 359), (266, 417), (217, 493), (181, 555),
+# 건물 15동 배치 좌표: 사용자 수정안(2026-10-13 PDF 빨간 박스)을 옮긴 값. 4번은 기존 위치 유지, 1번은 경계 안으로 12px 이동
+HOUSES = [(370, 326), (314, 359), (266, 417), (217, 493), (181, 555),
           (502, 370), (452, 437), (407, 506), (360, 572),
           (272, 635), (445, 629), (390, 709), (504, 786),
-          (141, 304), (226, 296)]
-HOUSE_W, HOUSE_H, ROT = 62, 50, 35.3  # 도로 방향(-54.7°)에 맞춘 회전
-HOUSE_ROT = [ROT] * 13 + [83, ROT]  # 14: 좁고 긴 서측 필지 방향
+          (156, 354), (243, 315)]  # 14·15: 경계 안에 들어가도록 조정(2026-10-13)
+HOUSE_W, HOUSE_H, ROT = 62, 50, 35.3  # 도로 방향(-54.7°)에 맞춘 회전. 15동 모두 같은 각도
 
 def pts(seq):
     return " ".join(f"{x},{y}" for x, y in seq)
@@ -63,13 +62,36 @@ def dividers():
     axis_splits(INNER_ROAD[2], INNER_ROAD[3], [10, 12])
     return lines
 
+# 검사: 건물 꼭짓점이 자기 영역(기존 단지 / 추가 대지의 분할선 서측·동측) 안에 있어야 한다
+def _inside(pt, poly):
+    x, y = pt; c = False
+    for i in range(len(poly)):
+        (x1, y1), (x2, y2) = poly[i], poly[(i + 1) % len(poly)]
+        if (y1 > y) != (y2 > y) and x < (x2 - x1) * (y - y1) / (y2 - y1) + x1:
+            c = not c
+    return c
+
+def _corners(cx, cy):
+    r = math.radians(ROT); cs, sn = math.cos(r), math.sin(r)
+    return [(cx + x * cs - y * sn, cy + x * sn + y * cs)
+            for x, y in [(-HOUSE_W / 2, -HOUSE_H / 2), (HOUSE_W / 2, -HOUSE_H / 2), (HOUSE_W / 2, HOUSE_H / 2), (-HOUSE_W / 2, HOUSE_H / 2)]]
+
+def _side(pt):  # 분할선 기준 서측이면 음수
+    (ax, ay), (bx, by) = ANNEX_SPLIT
+    return (bx - ax) * (pt[1] - ay) - (by - ay) * (pt[0] - ax)
+
+for i, (x, y) in enumerate(HOUSES):
+    for c in _corners(x, y):
+        ok = _inside(c, OLD_SITE) if i < 13 else _inside(c, ANNEX) and (_side(c) > 0) == (i == 13)
+        assert ok, f"{i + 1}번 건물이 필지 밖으로 나감: {c}"
+
 houses = []
 for i, (x, y) in enumerate(HOUSES):
     d = 0.08 * i
     houses.append(
         f'<g transform="translate({x} {y})">'
         f'<rect class="house" x="{-HOUSE_W/2}" y="{-HOUSE_H/2}" width="{HOUSE_W}" height="{HOUSE_H}" '
-        f'transform="rotate({HOUSE_ROT[i]})" style="animation-delay:{d:.2f}s"/>'
+        f'transform="rotate({ROT})" style="animation-delay:{d:.2f}s"/>'
         f'<text class="num" y="5" style="animation-delay:{d:.2f}s">{i+1}</text></g>')
 
 div_lines = "\n    ".join(f'<line x1="{a[0]:.0f}" y1="{a[1]:.0f}" x2="{b[0]:.0f}" y2="{b[1]:.0f}"/>' for a, b in dividers())
