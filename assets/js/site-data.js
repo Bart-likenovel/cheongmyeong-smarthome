@@ -107,9 +107,19 @@ window.SITE = {
 
   // 입지 근거. kind: fact(보도·공식 확인) / owner(사업주 안내)
   location: [
+    {
+      title: "청명역·상갈역 (수인·분당선)", kind: "fact",
+      body: "청명역은 단지에서 직선 약 0.9km, 상갈역은 직선 약 1.7km 거리에 있습니다. 도보·차량 이동거리는 실제 경로에 따라 다릅니다.",
+      src: { label: "OpenStreetMap 역 좌표 기준 (2026-10-16)", url: "https://www.openstreetmap.org/#map=14/37.2600/127.0900" },
+    },
+    {
+      title: "인덕원–동탄 복선전철 (개통 예정)", kind: "fact",
+      body: "흥덕–영통 구간을 포함하는 신설 노선입니다. 지도는 주변 구간의 개략 위치이며, 실제 선형·역 위치 및 개통 일정은 변경될 수 있습니다.",
+      src: { label: "수원시 동탄인덕원선 사업자료", url: "https://www.suwon.go.kr/webcontent/ckeditor/2025/9/8/5f9e65af-fca2-4a7b-8369-cb7178b91958.pdf" },
+    },
     { title: "청명산 기슭", body: "청명산이 단지 서쪽 직선 약 0.5km에 있습니다. 숲과 계곡을 곁에 둔 조용한 주거지입니다.", kind: "fact", src: { label: "네이버지도 좌표 기준 직선거리", url: "https://map.naver.com/p/search/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EC%9A%A9%EC%9D%B8%EC%8B%9C%20%EA%B8%B0%ED%9D%A5%EA%B5%AC%20%ED%95%98%EA%B0%88%EB%8F%99%20343-1" } },
     { title: "8m 전면 진입 도시계획도로", body: "단지 앞 기존 도로를 8m로 넓히는 도시계획도로 공사가 2027년 7월 완공될 예정입니다.", kind: "owner" },
-    { title: "초등학교 도보권", body: "용인신성초등학교가 단지에서 직선 약 0.7km 거리에 있습니다.", kind: "fact", src: { label: "네이버지도 좌표 기준 직선거리", url: "https://map.naver.com/p/search/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EC%9A%A9%EC%9D%B8%EC%8B%9C%20%EA%B8%B0%ED%9D%A5%EA%B5%AC%20%ED%95%98%EA%B0%88%EB%8F%99%20343-1" } },
+    { title: "초등학교 도보권", body: "용인신성초등학교가 단지에서 약 0.5km 거리에 있습니다.", kind: "owner" },
     {
       title: "하갈동 중학교 신설", kind: "owner",
       body: "하갈동 기흥중학교가 단지에서 직선 약 0.6km 거리에 새로 들어서며, 2027년 2월 개교할 예정입니다.",

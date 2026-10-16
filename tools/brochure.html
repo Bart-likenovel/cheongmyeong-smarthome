@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <title>청명스마트AI홈 분양 안내서</title>
+<link rel="icon" href="../assets/img/ai/logo-mark.png">
 <!-- 인쇄용 분양 안내서. 내용은 site-data.js와 각 페이지 HTML에서 읽어온다(문구 원본은 사이트).
      PDF 생성: tools/make-brochure.cjs -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap">
@@ -86,6 +87,10 @@
   .loc h4 { font-size: 10pt; }
   .loc p { font-size: 8.5pt; color: var(--pine-soft); margin-top: .5mm; }
   .loc .src { font-size: 7pt; }
+
+  .location-page .map img { width: 132mm; }
+  .location-page .loc { margin-top: 3mm; }
+  .location-page .loc li { padding-block: 1.5mm; }
 
   /* 단지·타입 */
   .wide { grid-column: span 2; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; } /* 원본 비율: 15동이 잘리지 않게 */
@@ -178,7 +183,7 @@
     folio(3, "프리미엄") + "</section>");
 
   // 4. 입지환경
-  pages.push('<section class="page">' + head("Location", "숲과 일터, 학교 사이") +
+  pages.push('<section class="page location-page">' + head("Location", "숲과 일터, 학교 사이") +
     '<figure class="map" style="margin:0"><img src="' + R + 'assets/img/svg/location-map.svg" alt="입지 지도"></figure>' +
     '<ul class="loc">' + S.location.map(function (l) {
       return "<li><h4>" + esc(l.title) + (l.kind === "owner" ? tagOwner : "") + "</h4><p>" + esc(l.body) + "</p>" +

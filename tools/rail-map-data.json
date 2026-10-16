@@ -1,0 +1,53 @@
+{
+  "checked": "2026-10-16",
+  "stations": [
+    {
+      "name": "청명역",
+      "coords": [
+        37.2599557,
+        127.0795065
+      ],
+      "label": [
+        65,
+        175
+      ]
+    },
+    {
+      "name": "상갈역",
+      "coords": [
+        37.2616643,
+        127.1082293
+      ],
+      "label": [
+        615,
+        235
+      ]
+    }
+  ],
+  "stationSource": "OpenStreetMap Nominatim: Cheongmyeong station, 상갈역 (철도역 결과 확인)",
+  "planned": {
+    "points": [
+      [
+        37.275,
+        127.073
+      ],
+      [
+        37.268,
+        127.07
+      ],
+      [
+        37.2540073,
+        127.0740864
+      ],
+      [
+        37.242,
+        127.072
+      ]
+    ],
+    "note": "공식 노선도의 흥덕–영통–서천 방향을 단순화한 개략 좌표. 설계 좌표 및 확정 선형 아님.",
+    "sources": [
+      "https://www.suwon.go.kr/webcontent/ckeditor/2025/9/8/5f9e65af-fca2-4a7b-8369-cb7178b91958.pdf",
+      "https://www.uiwang.go.kr/MEDIA/mayor/down/elected08-1/plan/3-1.pdf"
+    ]
+  }
+}
