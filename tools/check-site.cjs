@@ -11,6 +11,33 @@ const fail = (m) => { fails.push(m); console.log("FAIL", m); };
 
 (async () => {
   const browser = await chromium.launch();
+  // SVG 내부 라벨의 겹침과 잘림은 이미지 바깥의 DOM 넘침 검사로 잡히지 않는다.
+  const map = await browser.newPage();
+  await map.goto(`${BASE}/assets/img/svg/location-map.svg`);
+  const mapIssues = await map.evaluate(() => {
+    const labels = [...document.querySelectorAll(".map-label")];
+    const boxes = labels.map(el => ({ name: el.textContent, box: el.getBBox() }));
+    const issues = [];
+    if (labels.length !== 10) issues.push("시설 8개·역 2개 라벨 누락");
+    for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) {
+      const a = boxes[i].box, b = boxes[j].box;
+      if (a.x < b.x + b.width + 8 && a.x + a.width + 8 > b.x &&
+          a.y < b.y + b.height + 8 && a.y + a.height + 8 > b.y)
+        issues.push(`라벨 겹침: ${boxes[i].name} / ${boxes[j].name}`);
+    }
+    const vb = document.documentElement.viewBox.baseVal;
+    for (const text of document.querySelectorAll("text")) {
+      const b = text.getBBox();
+      const matrix = document.documentElement.getScreenCTM().inverse().multiply(text.getScreenCTM());
+      const start = new DOMPoint(b.x, b.y).matrixTransform(matrix);
+      const end = new DOMPoint(b.x + b.width, b.y + b.height).matrixTransform(matrix);
+      if (start.x < 0 || start.y < 0 || end.x > vb.width || end.y > vb.height)
+        issues.push(`지도 글자 잘림: ${text.textContent}`);
+    }
+    return issues;
+  });
+  mapIssues.forEach(issue => fail(issue));
+  await map.close();
   for (const [vpName, vp] of Object.entries(VIEWPORTS)) {
     const ctx = await browser.newContext({ viewport: vp, deviceScaleFactor: 1 });
     for (const name of PAGES) {

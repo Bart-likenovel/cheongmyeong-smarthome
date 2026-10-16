@@ -1,50 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 720" role="img" aria-labelledby="t d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 930" role="img" aria-labelledby="t d">
   <title id="t">청명스마트AI홈 입지 지도</title>
   <desc id="d">하갈동 343-1 단지를 중심으로 주요 시설의 실제 방향과 직선거리를 나타낸 지도. 반경은 압축 표기. 노란색은 청명역·상갈역(수인·분당선), 주황 점선은 인덕원–동탄 개통 예정 노선의 개략 위치.</desc>
   <style>
     text{font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif}
-    .contour{fill:none;stroke:#7DB043;stroke-width:1.2}
-    .ring{fill:none;stroke:#DCEAF2;stroke-opacity:.22;stroke-width:1;stroke-dasharray:2 6}
-    .ringlbl{font-size:12px;fill:#DCEAF2;fill-opacity:.55;letter-spacing:.04em}
-    .axis{stroke:#DCEAF2;stroke-opacity:.07;stroke-width:1}
-    .spoke{stroke:#C9D9B0;stroke-opacity:.35;stroke-width:1}
-    .poi{fill:#DCEAF2}
-    .poi-halo{fill:none;stroke:#DCEAF2;stroke-opacity:.3}
-    .name{font-size:17px;font-weight:600;fill:#FBFCFC;paint-order:stroke;stroke:#142824;stroke-width:3}
-    .dist{font-size:12.5px;fill:#B9CBC6;paint-order:stroke;stroke:#142824;stroke-width:3}
-    .far{stroke:#7DB043;stroke-width:1.6;stroke-dasharray:6 6}
-    .rail-existing{fill:none;stroke:#FFD35A;stroke-width:2.5}
-    .rail-planned{fill:none;stroke:#FF9F70;stroke-width:4;stroke-dasharray:10 7;stroke-linecap:round}
-    .rail-station{fill:#142824;stroke:#FFD35A;stroke-width:4}
-    .rail-name{font-size:18px;font-weight:700;fill:#FFD35A;paint-order:stroke;stroke:#142824;stroke-width:4}
-    .rail-sub{font-size:13px;fill:#FFD35A;paint-order:stroke;stroke:#142824;stroke-width:3}
-    .planned-name{font-size:18px;font-weight:700;fill:#FF9F70}
-    .planned-sub{font-size:13px;fill:#FFBC9B;paint-order:stroke;stroke:#142824;stroke-width:3}
-    .site-name{font-family:'Gowun Batang','Noto Serif KR',serif;font-size:17px;letter-spacing:-.02em;fill:#142824;font-weight:700}
-    .site-sub{font-size:11.5px;fill:#2F4F48}
-    .cap{font-size:12px;fill:#8FA7A1}
-    .n{font-size:12px;fill:#DCEAF2;fill-opacity:.7}
+    .contour{fill:none;stroke:#8AA692;stroke-width:1;opacity:.22}
+    .ring{fill:none;stroke:#CAD8D2;stroke-width:1;stroke-dasharray:2 7}
+    .ringlbl{font-size:15px;fill:#62766B}
+    .axis{stroke:#D6E0DB;stroke-width:1;opacity:.38}
+    .spoke{stroke:#B9CAC1;stroke-width:1;opacity:.28}
+    .poi{fill:#496A5C}
+    .poi-halo{fill:#F4F8F5;stroke:#B9CAC1;stroke-width:1}
+    .label-leader{fill:none;stroke:#A7BCB0;stroke-width:1}
+    .label-leader.rail{stroke:#BEA46A}
+    .label-name{font-size:22px;font-weight:600;fill:#284A3C;paint-order:stroke;stroke:#F4F8F5;stroke-width:7;stroke-linejoin:round}
+    .label-detail{font-size:15.5px;fill:#62766B;paint-order:stroke;stroke:#F4F8F5;stroke-width:6;stroke-linejoin:round}
+    .rail .label-name{fill:#9B701B}
+    .rail .label-detail{fill:#85692E}
+    .rail-existing{fill:none;stroke:#B99236;stroke-width:2}
+    .rail-planned{fill:none;stroke:#CA9170;stroke-width:2.5;stroke-dasharray:7 7;stroke-linecap:round}
+    .rail-station{fill:#FFFFFF;stroke:#B99236;stroke-width:2.5}
+    .rail-dot{fill:#B99236}
+    .planned-name{font-size:22px;font-weight:600;fill:#8A6049}
+    .planned-sub{font-size:15px;fill:#756150}
+    .legend{font-size:15px;fill:#62766B}
+    .far{stroke:#7C9A74;stroke-width:1.5;stroke-dasharray:5 6}
+    .site-name{font-family:'Gowun Batang','Noto Serif KR',serif;font-size:21px;fill:#244B3A;font-weight:700}
+    .site-sub{font-size:14px;fill:#62766B}
+    .cap{font-size:14px;fill:#62766B}
   </style>
   <defs>
-    <radialGradient id="bg" cx="50%" cy="47%" r="70%">
-      <stop offset="0" stop-color="#24443D"/><stop offset="1" stop-color="#101F1C"/>
-    </radialGradient>
-    <radialGradient id="glow"><stop offset="0" stop-color="#7DB043" stop-opacity=".55"/><stop offset="1" stop-color="#7DB043" stop-opacity="0"/></radialGradient>
-    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0 0 L10 5 L0 10 Z" fill="#7DB043"/>
-    </marker>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#7C9A74"/></marker>
   </defs>
-  <rect width="800" height="720" fill="url(#bg)"/>
-  <path d="M371.1 329.1 Q371.1 329.1 356.9 368.0 Q342.8 406.9 305.3 417.9 Q267.7 428.9 232.0 425.6 Q196.3 422.2 161.7 398.0 Q127.0 373.9 143.4 335.0 Q159.8 296.2 178.1 266.1 Q196.3 235.9 235.1 215.4 Q273.8 194.8 294.9 234.3 Q316.1 273.7 343.6 301.4 Z" class="contour" style="opacity:0.18"/><path d="M349.5 329.1 Q349.5 329.1 336.1 359.5 Q322.6 389.9 292.3 393.4 Q262.1 396.9 230.2 407.8 Q198.3 418.8 183.4 388.8 Q168.6 358.7 172.0 330.3 Q175.5 301.9 189.9 275.8 Q204.3 249.7 235.8 240.8 Q267.3 231.8 285.1 258.3 Q302.9 284.8 326.2 306.9 Z" class="contour" style="opacity:0.28"/><path d="M322.8 329.1 Q322.8 329.1 312.2 350.7 Q301.6 372.2 280.5 377.0 Q259.4 381.7 234.3 390.8 Q209.2 399.8 201.8 374.6 Q194.4 349.3 194.4 329.1 Q194.4 308.8 202.6 284.9 Q210.8 260.9 235.6 265.8 Q260.4 270.7 279.2 279.8 Q298.0 288.9 310.4 309.0 Z" class="contour" style="opacity:0.38"/><path d="M299.2 329.1 Q299.2 329.1 289.1 341.2 Q279.0 353.3 268.4 363.2 Q257.9 373.1 241.7 372.3 Q225.6 371.5 219.1 357.1 Q212.7 342.7 212.3 328.9 Q211.8 315.1 217.4 298.6 Q222.9 282.0 239.5 288.9 Q256.0 295.8 270.9 297.4 Q285.9 299.0 292.6 314.0 Z" class="contour" style="opacity:0.48"/><path d="M277.0 329.1 Q277.0 329.1 270.4 334.8 Q263.8 340.6 259.5 349.0 Q255.1 357.3 246.7 353.4 Q238.3 349.5 234.2 342.9 Q230.2 336.3 228.0 328.3 Q225.8 320.2 231.5 313.5 Q237.2 306.8 245.4 308.0 Q253.6 309.3 261.7 310.9 Q269.9 312.5 273.5 320.8 Z" class="contour" style="opacity:0.58"/><circle cx="400" cy="340" r="118.8" class="ring"/><text x="490.3" y="255.7" class="ringlbl">500m</text><circle cx="400" cy="340" r="168.0" class="ring"/><text x="525.3" y="220.7" class="ringlbl">1km</text><circle cx="400" cy="340" r="291.0" class="ring"/><text x="612.6" y="133.4" class="ringlbl">3km</text><path d="M400 40 V680 M60 340 H740" class="axis"/><path d="M241.7 132.9 L198.2 207.0 L207.8 397.4 L229.3 531.1" class="rail-planned"/><text x="32" y="66" class="planned-name">인덕원–동탄 복선전철</text><text x="32" y="86" class="planned-sub">개통 예정 · 흥덕–영통 구간 개략</text><text x="32" y="106" class="planned-sub">↑ 인덕원 방면 / ↓ 동탄 방면</text><line x1="400" y1="340" x2="280.1" y2="317.1" class="spoke"/><circle cx="280.1" cy="317.1" r="6" class="poi"/><circle cx="280.1" cy="317.1" r="12" class="poi-halo"/><text x="266.1" y="315.1" text-anchor="end" class="name">청명산</text><text x="266.1" y="334.1" text-anchor="end" class="dist">숲·산책로 · 직선 0.5km</text><line x1="400" y1="340" x2="348.3" y2="220.6" class="spoke"/><circle cx="348.3" cy="220.6" r="6" class="poi"/><circle cx="348.3" cy="220.6" r="12" class="poi-halo"/><text x="334.3" y="218.6" text-anchor="end" class="name">청명초등학교</text><text x="334.3" y="237.6" text-anchor="end" class="dist">수원 영통구 · 0.6km(사업주 안내)</text><line x1="400" y1="340" x2="94.2" y2="344.2" class="spoke"/><circle cx="94.2" cy="344.2" r="6" class="poi"/><circle cx="94.2" cy="344.2" r="12" class="poi-halo"/><text x="44.2" y="300.2" text-anchor="start" class="name">삼성전자 수원사업장</text><text x="44.2" y="319.2" text-anchor="start" class="dist">수원 영통구 · 직선 3.3km</text><line x1="400" y1="340" x2="288.6" y2="381.3" class="spoke"/><circle cx="288.6" cy="381.3" r="6" class="poi"/><circle cx="288.6" cy="381.3" r="12" class="poi-halo"/><text x="274.6" y="379.3" text-anchor="end" class="name">신성초등학교</text><text x="274.6" y="398.3" text-anchor="end" class="dist">용인신성초 · 0.5km(사업주 안내)</text><line x1="400" y1="340" x2="532.8" y2="314.0" class="spoke"/><circle cx="532.8" cy="314.0" r="6" class="poi"/><circle cx="532.8" cy="314.0" r="12" class="poi-halo"/><text x="546.8" y="312.0" text-anchor="start" class="name">기흥중학교</text><text x="546.8" y="331.0" text-anchor="start" class="dist">하갈동 · 직선 0.6km</text><line x1="400" y1="340" x2="465.7" y2="435.5" class="spoke"/><circle cx="465.7" cy="435.5" r="6" class="poi"/><circle cx="465.7" cy="435.5" r="12" class="poi-halo"/><text x="479.7" y="433.5" text-anchor="start" class="name">청명호수마을</text><text x="479.7" y="452.5" text-anchor="start" class="dist">생활권 · 직선 0.5km</text><line x1="400" y1="340" x2="502.7" y2="570.3" class="spoke"/><circle cx="502.7" cy="570.3" r="6" class="poi"/><circle cx="502.7" cy="570.3" r="12" class="poi-halo"/><text x="516.7" y="568.3" text-anchor="start" class="name">기흥호수공원</text><text x="516.7" y="587.3" text-anchor="start" class="dist">호수 산책 · 직선 2.3km</text><line x1="400" y1="340" x2="322.8" y2="631.4" class="spoke"/><circle cx="322.8" cy="631.4" r="6" class="poi"/><circle cx="322.8" cy="631.4" r="12" class="poi-halo"/><text x="308.8" y="629.4" text-anchor="end" class="name">삼성전자 기흥캠퍼스</text><text x="308.8" y="648.4" text-anchor="end" class="dist">농서동 · 직선 3.2km</text><path d="M244.9 296.3 L65 183" class="rail-existing"/><circle cx="244.9" cy="296.3" r="8" class="rail-station"/><text x="65" y="175" class="rail-name">청명역</text><text x="65" y="195" class="rail-sub">수인·분당선 · 직선 0.9km</text><path d="M612.8 283.8 L615 243" class="rail-existing"/><circle cx="612.8" cy="283.8" r="8" class="rail-station"/><text x="615" y="235" class="rail-name">상갈역</text><text x="615" y="255" class="rail-sub">수인·분당선 · 직선 1.7km</text><path d="M480 55 H512" class="rail-existing"/><text x="522" y="60" class="rail-sub">운행 중인 역</text><path d="M480 80 H512" class="rail-planned"/><text x="522" y="85" class="planned-sub">예정 노선(개략)</text><line x1="619.9" y1="596.7" x2="647.2" y2="628.6" class="far" marker-end="url(#arrow)"/><text x="768" y="642" text-anchor="end" class="name">용인 반도체 국가산단</text><text x="768" y="662" text-anchor="end" class="dist">처인구 이동·남사읍 방향</text>
-  <circle cx="400" cy="340" r="90" fill="url(#glow)"/>
-  <circle cx="400" cy="340" r="62" fill="#FBFCFC"/>
-  <circle cx="400" cy="340" r="69" fill="none" stroke="#7DB043" stroke-width="1.5"/>
-  <text x="400" y="338" text-anchor="middle" class="site-name">청명스마트AI홈</text>
-  <text x="400" y="358" text-anchor="middle" class="site-sub">하갈동 343-1 일원</text>
-  <g transform="translate(744 64)">
-    <path d="M0 -20 L7 6 L0 1 L-7 6 Z" fill="#DCEAF2"/>
-    <text x="-4" y="22" class="n">N</text>
-  </g>
-  <text x="32" y="684" class="cap">거리: 청명초·신성초는 사업주 안내 / 그 외 단지 중심 직선거리 · 반경 축약</text>
-  <text x="32" y="703" class="cap">예정 노선: 지자체 공개자료 기반 개략도 · 실제 선형·역 위치 및 일정은 변경될 수 있습니다.</text>
+  <rect width="1000" height="930" fill="#F4F8F5"/>
+  <path d="M45 145 H955 M45 864 H955" stroke="#D5E0D9" fill="none"/>
+  <text x="50" y="58" class="planned-name">인덕원–동탄 복선전철</text>
+  <text x="50" y="84" class="planned-sub">개통 예정 · 흥덕–영통 구간 개략</text>
+  <text x="50" y="109" class="planned-sub">↑ 인덕원 방면 / ↓ 동탄 방면</text>
+  <path d="M690 61 H722" class="rail-existing"/><text x="735" y="66" class="legend">운행 중인 역</text>
+  <path d="M690 92 H722" class="rail-planned"/><text x="735" y="97" class="legend">예정 노선(개략)</text>
+  <g transform="translate(949 72)"><path d="M0 -19 L6 5 L0 1 L-6 5 Z" fill="#567667"/><text x="-5" y="27" font-size="14" fill="#62766B">N</text></g>
+  <path d="M455.4 426.1 Q455.4 426.1 441.2 465.0 Q427.1 503.9 389.6 514.9 Q352.0 525.9 316.3 522.5 Q280.6 519.2 246.0 495.0 Q211.3 470.9 227.7 432.0 Q244.1 393.2 262.4 363.1 Q280.6 332.9 319.4 312.4 Q358.1 291.8 379.2 331.3 Q400.4 370.7 427.9 398.4 Z" class="contour"/><path d="M433.8 426.1 Q433.8 426.1 420.4 456.5 Q406.9 486.9 376.6 490.4 Q346.4 493.9 314.5 504.8 Q282.6 515.8 267.7 485.8 Q252.9 455.7 256.3 427.3 Q259.8 398.9 274.2 372.8 Q288.6 346.7 320.1 337.8 Q351.6 328.8 369.4 355.3 Q387.2 381.8 410.5 403.9 Z" class="contour"/><path d="M407.1 426.1 Q407.1 426.1 396.5 447.6 Q385.9 469.2 364.8 474.0 Q343.7 478.7 318.6 487.8 Q293.5 496.8 286.1 471.6 Q278.7 446.3 278.7 426.1 Q278.7 405.8 286.9 381.9 Q295.1 357.9 319.9 362.8 Q344.7 367.7 363.5 376.8 Q382.3 385.9 394.7 406.0 Z" class="contour"/><path d="M383.5 426.1 Q383.5 426.1 373.4 438.2 Q363.3 450.3 352.7 460.2 Q342.2 470.1 326.0 469.3 Q309.9 468.5 303.4 454.1 Q297.0 439.7 296.6 425.9 Q296.1 412.1 301.7 395.6 Q307.2 379.0 323.8 385.9 Q340.3 392.7 355.2 394.4 Q370.2 396.0 376.9 411.0 Z" class="contour"/><path d="M361.3 426.1 Q361.3 426.1 354.7 431.8 Q348.1 437.6 343.8 446.0 Q339.4 454.3 331.0 450.4 Q322.6 446.5 318.5 439.9 Q314.5 433.3 312.3 425.3 Q310.1 417.2 315.8 410.5 Q321.5 403.8 329.7 405.0 Q337.9 406.3 346.0 407.9 Q354.2 409.5 357.8 417.8 Z" class="contour"/><circle cx="500" cy="440" r="134.4" class="ring"/><text x="603.4" y="344.6" class="ringlbl">500m</text><circle cx="500" cy="440" r="190.0" class="ring"/><text x="642.9" y="305.1" class="ringlbl">1km</text><circle cx="500" cy="440" r="329.1" class="ring"/><text x="741.7" y="206.3" class="ringlbl">3km</text><path d="M500 165 V835 M45 440 H955" class="axis"/><path d="M321.0 205.7 L271.8 289.5 L282.7 504.9 L306.9 656.2" class="rail-planned"/><line x1="500" y1="440" x2="364.4" y2="414.1" class="spoke"/><line x1="500" y1="440" x2="441.5" y2="305.0" class="spoke"/><line x1="500" y1="440" x2="154.1" y2="444.7" class="spoke"/><line x1="500" y1="440" x2="374.0" y2="486.7" class="spoke"/><line x1="500" y1="440" x2="650.1" y2="410.6" class="spoke"/><line x1="500" y1="440" x2="574.3" y2="548.0" class="spoke"/><line x1="500" y1="440" x2="616.2" y2="700.5" class="spoke"/><line x1="500" y1="440" x2="412.7" y2="769.5" class="spoke"/>
+  <path d="M364.4 414.1 V386 H420" class="label-leader facility"/><g class="map-label facility"><text x="420" y="350" text-anchor="end" class="label-name">청명산</text><text x="420" y="374" text-anchor="end" class="label-detail">숲·산책로 · 직선 0.5km</text></g><path d="M441.5 305.0 V271 H475" class="label-leader facility"/><g class="map-label facility"><text x="475" y="235" text-anchor="start" class="label-name">청명초등학교</text><text x="475" y="259" text-anchor="start" class="label-detail">수원 영통구 · 0.6km(사업주 안내)</text></g><path d="M154.1 444.7 V482 H65" class="label-leader facility"/><g class="map-label facility"><text x="65" y="500" text-anchor="start" class="label-name">삼성전자 수원사업장</text><text x="65" y="524" text-anchor="start" class="label-detail">수원 영통구 · 직선 3.3km</text></g><path d="M374.0 486.7 V582 H245" class="label-leader facility"/><g class="map-label facility"><text x="245" y="600" text-anchor="start" class="label-name">신성초등학교</text><text x="245" y="624" text-anchor="start" class="label-detail">용인신성초 · 0.5km(사업주 안내)</text></g><path d="M650.1 410.6 V437 H705" class="label-leader facility"/><g class="map-label facility"><text x="705" y="455" text-anchor="start" class="label-name">기흥중학교</text><text x="705" y="479" text-anchor="start" class="label-detail">하갈동 · 직선 0.6km</text></g><path d="M574.3 548.0 V572 H660" class="label-leader facility"/><g class="map-label facility"><text x="660" y="590" text-anchor="start" class="label-name">청명호수마을</text><text x="660" y="614" text-anchor="start" class="label-detail">생활권 · 직선 0.5km</text></g><path d="M616.2 700.5 V662 H700" class="label-leader facility"/><g class="map-label facility"><text x="700" y="680" text-anchor="start" class="label-name">기흥호수공원</text><text x="700" y="704" text-anchor="start" class="label-detail">호수 산책 · 직선 2.3km</text></g><path d="M412.7 769.5 V797 H300" class="label-leader facility"/><g class="map-label facility"><text x="300" y="815" text-anchor="start" class="label-name">삼성전자 기흥캠퍼스</text><text x="300" y="839" text-anchor="start" class="label-detail">농서동 · 직선 3.2km</text></g><path d="M324.6 390.5 V321 H85" class="label-leader rail"/><g class="map-label rail"><text x="85" y="285" text-anchor="start" class="label-name">청명역</text><text x="85" y="309" text-anchor="start" class="label-detail">수인·분당선 · 직선 0.9km</text></g><path d="M740.7 376.4 V356 H770" class="label-leader rail"/><g class="map-label rail"><text x="770" y="320" text-anchor="start" class="label-name">상갈역</text><text x="770" y="344" text-anchor="start" class="label-detail">수인·분당선 · 직선 1.7km</text></g>
+  <circle cx="364.4" cy="414.1" r="11" class="poi-halo"/><circle cx="364.4" cy="414.1" r="5" class="poi"/><circle cx="441.5" cy="305.0" r="11" class="poi-halo"/><circle cx="441.5" cy="305.0" r="5" class="poi"/><circle cx="154.1" cy="444.7" r="11" class="poi-halo"/><circle cx="154.1" cy="444.7" r="5" class="poi"/><circle cx="374.0" cy="486.7" r="11" class="poi-halo"/><circle cx="374.0" cy="486.7" r="5" class="poi"/><circle cx="650.1" cy="410.6" r="11" class="poi-halo"/><circle cx="650.1" cy="410.6" r="5" class="poi"/><circle cx="574.3" cy="548.0" r="11" class="poi-halo"/><circle cx="574.3" cy="548.0" r="5" class="poi"/><circle cx="616.2" cy="700.5" r="11" class="poi-halo"/><circle cx="616.2" cy="700.5" r="5" class="poi"/><circle cx="412.7" cy="769.5" r="11" class="poi-halo"/><circle cx="412.7" cy="769.5" r="5" class="poi"/><circle cx="324.6" cy="390.5" r="9" class="rail-station"/><circle cx="324.6" cy="390.5" r="3" class="rail-dot"/><circle cx="740.7" cy="376.4" r="9" class="rail-station"/><circle cx="740.7" cy="376.4" r="3" class="rail-dot"/><line x1="740.7" y1="721.0" x2="766.8" y2="751.3" class="far" marker-end="url(#arrow)"/>
+  <circle cx="500" cy="440" r="92" fill="#F4F8F5" stroke="#D4E0D7"/>
+  <circle cx="500" cy="440" r="85" fill="#FFFFFF" stroke="#9BB59F" stroke-width="1.3"/>
+  <text x="500" y="437" text-anchor="middle" class="site-name">청명스마트AI홈</text>
+  <text x="500" y="463" text-anchor="middle" class="site-sub">하갈동 343-1 일원</text>
+  <text x="950" y="815" text-anchor="end" class="label-name">용인 반도체 국가산단</text>
+  <text x="950" y="839" text-anchor="end" class="label-detail">처인구 이동·남사읍 방향</text>
+  <text x="45" y="890" class="cap">거리: 청명초·신성초는 사업주 안내 / 그 외 단지 중심 직선거리 · 반경 축약</text>
+  <text x="45" y="914" class="cap">예정 노선: 지자체 공개자료 기반 개략도 · 실제 선형·역 위치 및 일정은 변경될 수 있습니다.</text>
 </svg>
