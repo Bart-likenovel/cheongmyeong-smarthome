@@ -9,6 +9,31 @@ NS = {'s': 'http://www.w3.org/2000/svg'}
 
 
 class RailwayMapTest(unittest.TestCase):
+    def test_labels_and_key_lines_contrast_with_background(self):
+        root = ET.parse(SVG).getroot()
+        style = root.find('s:style', NS).text
+        background = root.find('s:rect', NS).attrib['fill']
+
+        def luminance(color):
+            channels = [int(color[i:i + 2], 16) / 255 for i in (1, 3, 5)]
+            return sum(w * (v / 12.92 if v <= .04045 else ((v + .055) / 1.055) ** 2.4)
+                       for v, w in zip(channels, [.2126, .7152, .0722]))
+
+        def contrast(color):
+            a, b = sorted([luminance(color), luminance(background)])
+            return (b + .05) / (a + .05)
+
+        for selector in ['.label-name', '.label-detail', '.rail .label-name',
+                         '.rail .label-detail', '.planned-name', '.planned-sub',
+                         '.legend', '.site-name', '.site-sub', '.cap', '.ringlbl']:
+            rule = re.search(re.escape(selector) + r'\{([^}]+)\}', style)[1]
+            color = re.search(r'fill:(#[0-9A-Fa-f]+)', rule)[1]
+            self.assertGreaterEqual(contrast(color), 7, selector)
+        for selector in ['.label-leader', '.rail-existing', '.rail-planned']:
+            rule = re.search(re.escape(selector) + r'\{([^}]+)\}', style)[1]
+            color = re.search(r'stroke:(#[0-9A-Fa-f]+)', rule)[1]
+            self.assertGreaterEqual(contrast(color), 3, selector)
+
     def test_sinseong_distance_uses_owner_guidance(self):
         root = ET.parse(SVG).getroot()
         labels = [el.text or '' for el in root.findall('.//s:text', NS)]

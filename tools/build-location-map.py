@@ -93,7 +93,7 @@ background.append('<path d="' + ' '.join(('M' if i == 0 else 'L') + f'{x:.1f} {y
 for name, sub, lat, lon, side, *dist in POIS:
     x, y, d = place(lat, lon, *dist)
     background.append(f'<line x1="{CX}" y1="{CY}" x2="{x:.1f}" y2="{y:.1f}" class="spoke"/>')
-    marks.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="11" class="poi-halo"/><circle cx="{x:.1f}" cy="{y:.1f}" r="5" class="poi"/>')
+    marks.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="11" class="poi-halo"/><circle cx="{x:.1f}" cy="{y:.1f}" r="6.5" class="poi"/>')
     detail = f"{sub} · {km(d)}(사업주 안내)" if dist else f"{sub} · 직선 {km(d)}"
     labels.append(label(name, detail, x, y))
 for station in RAIL['stations']:
@@ -109,33 +109,33 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" role="im
   <desc id="d">하갈동 343-1 단지를 중심으로 주요 시설의 실제 방향과 직선거리를 나타낸 지도. 반경은 압축 표기. 노란색은 청명역·상갈역(수인·분당선), 주황 점선은 인덕원–동탄 개통 예정 노선의 개략 위치.</desc>
   <style>
     text{{font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif}}
-    .contour{{fill:none;stroke:#8AA692;stroke-width:1;opacity:.22}}
-    .ring{{fill:none;stroke:#CAD8D2;stroke-width:1;stroke-dasharray:2 7}}
-    .ringlbl{{font-size:15px;fill:#62766B}}
-    .axis{{stroke:#D6E0DB;stroke-width:1;opacity:.38}}
-    .spoke{{stroke:#B9CAC1;stroke-width:1;opacity:.28}}
-    .poi{{fill:#496A5C}}
-    .poi-halo{{fill:#F4F8F5;stroke:#B9CAC1;stroke-width:1}}
-    .label-leader{{fill:none;stroke:#A7BCB0;stroke-width:1}}
-    .label-leader.rail{{stroke:#BEA46A}}
-    .label-name{{font-size:22px;font-weight:600;fill:#284A3C;paint-order:stroke;stroke:#F4F8F5;stroke-width:7;stroke-linejoin:round}}
-    .label-detail{{font-size:15.5px;fill:#62766B;paint-order:stroke;stroke:#F4F8F5;stroke-width:6;stroke-linejoin:round}}
-    .rail .label-name{{fill:#9B701B}}
-    .rail .label-detail{{fill:#85692E}}
-    .rail-existing{{fill:none;stroke:#B99236;stroke-width:2}}
-    .rail-planned{{fill:none;stroke:#CA9170;stroke-width:2.5;stroke-dasharray:7 7;stroke-linecap:round}}
-    .rail-station{{fill:#FFFFFF;stroke:#B99236;stroke-width:2.5}}
-    .rail-dot{{fill:#B99236}}
-    .planned-name{{font-size:22px;font-weight:600;fill:#8A6049}}
-    .planned-sub{{font-size:15px;fill:#756150}}
-    .legend{{font-size:15px;fill:#62766B}}
-    .far{{stroke:#7C9A74;stroke-width:1.5;stroke-dasharray:5 6}}
+    .contour{{fill:none;stroke:#718B79;stroke-width:1.4;opacity:.7}}
+    .ring{{fill:none;stroke:#7B9284;stroke-width:1.4;stroke-dasharray:2 7}}
+    .ringlbl{{font-size:16px;font-weight:500;fill:#304B40}}
+    .axis{{stroke:#889C90;stroke-width:1.2;opacity:.65}}
+    .spoke{{stroke:#7D9385;stroke-width:1.2;opacity:.7}}
+    .poi{{fill:#244C38}}
+    .poi-halo{{fill:#F4F8F5;stroke:#466653;stroke-width:1.8}}
+    .label-leader{{fill:none;stroke:#5A7868;stroke-width:1.8}}
+    .label-leader.rail{{stroke:#8A5D00}}
+    .label-name{{font-size:24px;font-weight:650;fill:#173B2C;paint-order:stroke;stroke:#F4F8F5;stroke-width:7;stroke-linejoin:round}}
+    .label-detail{{font-size:17px;font-weight:500;fill:#304B40;paint-order:stroke;stroke:#F4F8F5;stroke-width:6;stroke-linejoin:round}}
+    .rail .label-name{{fill:#694600}}
+    .rail .label-detail{{fill:#694600}}
+    .rail-existing{{fill:none;stroke:#8A5D00;stroke-width:2}}
+    .rail-planned{{fill:none;stroke:#B45124;stroke-width:3.5;stroke-dasharray:7 7;stroke-linecap:round}}
+    .rail-station{{fill:#FFFFFF;stroke:#8A5D00;stroke-width:2.5}}
+    .rail-dot{{fill:#8A5D00}}
+    .planned-name{{font-size:24px;font-weight:650;fill:#713A1C}}
+    .planned-sub{{font-size:16px;font-weight:500;fill:#713A1C}}
+    .legend{{font-size:16px;font-weight:500;fill:#304B40}}
+    .far{{stroke:#3C7045;stroke-width:1.5;stroke-dasharray:5 6}}
     .site-name{{font-family:'Gowun Batang','Noto Serif KR',serif;font-size:21px;fill:#244B3A;font-weight:700}}
-    .site-sub{{font-size:14px;fill:#62766B}}
-    .cap{{font-size:14px;fill:#62766B}}
+    .site-sub{{font-size:14px;fill:#304B40}}
+    .cap{{font-size:14px;fill:#304B40}}
   </style>
   <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#7C9A74"/></marker>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#3C7045"/></marker>
   </defs>
   <rect width="{W}" height="{H}" fill="#F4F8F5"/>
   <path d="M45 145 H955 M45 864 H955" stroke="#D5E0D9" fill="none"/>
@@ -144,12 +144,12 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" role="im
   <text x="50" y="109" class="planned-sub">↑ 인덕원 방면 / ↓ 동탄 방면</text>
   <path d="M690 61 H722" class="rail-existing"/><text x="735" y="66" class="legend">운행 중인 역</text>
   <path d="M690 92 H722" class="rail-planned"/><text x="735" y="97" class="legend">예정 노선(개략)</text>
-  <g transform="translate(949 72)"><path d="M0 -19 L6 5 L0 1 L-6 5 Z" fill="#567667"/><text x="-5" y="27" font-size="14" fill="#62766B">N</text></g>
+  <g transform="translate(949 72)"><path d="M0 -19 L6 5 L0 1 L-6 5 Z" fill="#567667"/><text x="-5" y="27" font-size="14" fill="#304B40">N</text></g>
   {"".join(background)}
   {"".join(labels)}
   {"".join(marks)}
   <circle cx="{CX}" cy="{CY}" r="92" fill="#F4F8F5" stroke="#D4E0D7"/>
-  <circle cx="{CX}" cy="{CY}" r="85" fill="#FFFFFF" stroke="#9BB59F" stroke-width="1.3"/>
+  <circle cx="{CX}" cy="{CY}" r="85" fill="#FFFFFF" stroke="#4D735C" stroke-width="2.2"/>
   <text x="{CX}" y="{CY - 3}" text-anchor="middle" class="site-name">청명스마트AI홈</text>
   <text x="{CX}" y="{CY + 23}" text-anchor="middle" class="site-sub">하갈동 343-1 일원</text>
   <text x="950" y="815" text-anchor="end" class="label-name">{FAR[0]}</text>
