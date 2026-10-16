@@ -25,6 +25,21 @@ const fail = (m) => { fails.push(m); console.log("FAIL", m); };
           a.y < b.y + b.height + 8 && a.y + a.height + 8 > b.y)
         issues.push(`라벨 겹침: ${boxes[i].name} / ${boxes[j].name}`);
     }
+    // 글자끼리 떨어져 있어도 선이 이름표를 가로지를 수 있다.
+    for (const path of document.querySelectorAll("path.rail-planned,path.label-leader")) {
+      const length = path.getTotalLength();
+      if (length < 50) continue;
+      for (const { name, box: b } of boxes) {
+        for (let distance = 0; distance <= length; distance += 2) {
+          const point = path.getPointAtLength(distance);
+          if (point.x > b.x - 6 && point.x < b.x + b.width + 6 &&
+              point.y > b.y - 6 && point.y < b.y + b.height + 6) {
+            issues.push(`선과 라벨 간섭: ${name} / ${path.getAttribute("class")}`);
+            break;
+          }
+        }
+      }
+    }
     const vb = document.documentElement.viewBox.baseVal;
     for (const text of document.querySelectorAll("text")) {
       const b = text.getBBox();

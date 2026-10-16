@@ -54,10 +54,10 @@ def blob(cx, cy, r, seed, n=9):
 
 # 라벨 위치만 조정한다. 시설·거리·방위와 철도 개략 좌표는 유지한다.
 LABELS = {
-    "청명산": (420, 350, "end"),
+    "청명산": (220, 390, "end"),
     "청명초등학교": (475, 235, "start"),
     "삼성전자 수원사업장": (65, 500, "start"),
-    "신성초등학교": (245, 600, "start"),
+    "신성초등학교": (340, 600, "start"),
     "기흥중학교": (705, 455, "start"),
     "청명호수마을": (660, 590, "start"),
     "기흥호수공원": (700, 680, "start"),
@@ -69,10 +69,17 @@ LABELS = {
 
 def label(name, detail, x, y, rail=False):
     tx, ty, anchor = LABELS[name]
-    dock_y = ty + 36 if y > ty + 36 else ty - 18
+    # 이름표의 상단·하단에서 10px 이상 띄운다. 같은 높이면 옆면으로 연결한다.
+    if y >= ty + 38:
+        path = f'M{x:.1f} {y:.1f} V{ty + 38} H{tx}'
+    elif y <= ty - 32:
+        path = f'M{x:.1f} {y:.1f} V{ty - 32} H{tx}'
+    else:
+        edge = tx - 12 if anchor == "start" else tx + 12
+        path = f'M{x:.1f} {y:.1f} H{edge}'
     cls = "rail" if rail else "facility"
     return (
-        f'<path d="M{x:.1f} {y:.1f} V{dock_y} H{tx}" class="label-leader {cls}"/>'
+        f'<path d="{path}" class="label-leader {cls}"/>'
         f'<g class="map-label {cls}">'
         f'<text x="{tx}" y="{ty}" text-anchor="{anchor}" class="label-name">{name}</text>'
         f'<text x="{tx}" y="{ty + 24}" text-anchor="{anchor}" class="label-detail">{detail}</text></g>'
@@ -109,15 +116,15 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" role="im
   <desc id="d">하갈동 343-1 단지를 중심으로 주요 시설의 실제 방향과 직선거리를 나타낸 지도. 반경은 압축 표기. 노란색은 청명역·상갈역(수인·분당선), 주황 점선은 인덕원–동탄 개통 예정 노선의 개략 위치.</desc>
   <style>
     text{{font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif}}
-    .contour{{fill:none;stroke:#718B79;stroke-width:1.4;opacity:.7}}
+    .contour{{fill:none;stroke:#718B79;stroke-width:1.2;opacity:.48}}
     .ring{{fill:none;stroke:#7B9284;stroke-width:1.4;stroke-dasharray:2 7}}
     .ringlbl{{font-size:16px;font-weight:500;fill:#304B40}}
-    .axis{{stroke:#889C90;stroke-width:1.2;opacity:.65}}
-    .spoke{{stroke:#7D9385;stroke-width:1.2;opacity:.7}}
+    .axis{{stroke:#889C90;stroke-width:1;stroke-dasharray:3 7;opacity:.5}}
+    .spoke{{stroke:#7D9385;stroke-width:1;stroke-dasharray:2 5;opacity:.6}}
     .poi{{fill:#244C38}}
     .poi-halo{{fill:#F4F8F5;stroke:#466653;stroke-width:1.8}}
     .label-leader{{fill:none;stroke:#5A7868;stroke-width:1.8}}
-    .label-leader.rail{{stroke:#8A5D00}}
+    .label-leader.rail{{stroke:#5A7868}}
     .label-name{{font-size:24px;font-weight:650;fill:#173B2C;paint-order:stroke;stroke:#F4F8F5;stroke-width:7;stroke-linejoin:round}}
     .label-detail{{font-size:17px;font-weight:500;fill:#304B40;paint-order:stroke;stroke:#F4F8F5;stroke-width:6;stroke-linejoin:round}}
     .rail .label-name{{fill:#694600}}
@@ -142,7 +149,7 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" role="im
   <text x="50" y="58" class="planned-name">인덕원–동탄 복선전철</text>
   <text x="50" y="84" class="planned-sub">개통 예정 · 흥덕–영통 구간 개략</text>
   <text x="50" y="109" class="planned-sub">↑ 인덕원 방면 / ↓ 동탄 방면</text>
-  <path d="M690 61 H722" class="rail-existing"/><text x="735" y="66" class="legend">운행 중인 역</text>
+  <path d="M714 61 A8 8 0 1 1 698 61 A8 8 0 1 1 714 61 Z" class="rail-existing"/><circle cx="706" cy="61" r="2.5" class="rail-dot"/><text x="735" y="66" class="legend">운행 중인 역</text>
   <path d="M690 92 H722" class="rail-planned"/><text x="735" y="97" class="legend">예정 노선(개략)</text>
   <g transform="translate(949 72)"><path d="M0 -19 L6 5 L0 1 L-6 5 Z" fill="#567667"/><text x="-5" y="27" font-size="14" fill="#304B40">N</text></g>
   {"".join(background)}
